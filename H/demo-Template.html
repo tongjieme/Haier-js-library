@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link href="demo.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+
+    <link href="dist/css/H/H.min.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/H.min.js"></script>
+
+    <style>
+        .title {
+            font-weight: bold;
+            line-height: 40px;
+        }
+        .table{
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e2e2e2;
+            margin-bottom: 10px;
+        }
+        .table th {
+            background: #efefef;
+            border-bottom: 1px solid #e2e2e2;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+        }
+        .table td {
+            border-bottom: 1px solid #e2e2e2;
+            padding: 10px;
+            text-align: center;
+        }
+        .color-blue td{
+            color: blue;
+        }
+        .color-green td{
+            color: green;
+        }
+        .color-red td{
+            color: red;
+        }
+        .color-gray td{
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Template</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+    <p style="padding: 10px 0; line-height: 25px; font-size: 12px;">
+        demo 中除了 <b>H.template</b> 模版编译方法外，顺便展示了两个字符相关的方法 <b>H.subStrByCode</b> 和 <b>H.getStrCodeLength</b><br>
+        <br>
+        <b>模板编译方法 —— H.template(text, data)</b><br>
+        * 参数说明：<br>
+        * text 【String】 需要编译的模板字符串<br>
+        * data 【Object】 编译模板时所要传入的数据<br>
+        <br><br>
+        <b>根据字符长度截字方法 —— H.subStrByCode(str, codeLength, flag, EnglishType)</b><br>
+        * 参数说明：<br>
+        * str 【String】 需要处理的字符串<br>
+        * codeLength 【Int】 需求截字的长度<br>
+        * flag 【Bool】 是否要保留头尾空格符，默认值为 false<br>
+        * EnglishType 【Bool】 是否开启英文截字模式（英文截字模式下，截字末尾如果将单词截断了，就会把末尾被截断的单词部分也去除掉），默认值为 false<br>
+        * <span style="color: #f00;">PS：EnglishType 参数放在最后，因为在中文环境，如果将 EnglishType 设置为 true，会出现意想不到的结果。因此中文环境下使用此参数需慎重</span><br>
+        <br><br>
+        <b>获取字符串的字符长度方法 —— H.getStrCodeLength(str)</b><br>
+        * 参数说明：<br>
+        * str 【String】 需要获取字符长度的字符串<br>
+
+        <br><br><br>
+    </p>
+
+    <div id="J-wrap-a"></div>
+
+    <script type="text/html" id="J-tpl-a">
+        <div>
+            <div class="title"><%= partName %></div>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>元素下标</th>
+                    <th>序号</th>
+                    <th>是否为首项</th>
+                    <th>是否为末项</th>
+                </tr>
+                <%
+                    $.each(list, function(i, item){
+                        var colorCls = '1';
+                        switch (i) {
+                            case 0:
+                                colorCls = 'color-blue';
+                                break;
+                            case 1:
+                                colorCls = 'color-red';
+                                break;
+                            case 2:
+                                colorCls = 'color-green';
+                                break;
+                            default:
+                                colorCls = 'color-gray';
+                                break;
+                        }
+                %>
+                <tr class="<%= colorCls %>">
+                    <td><%= H.subStrByCode(item.name, 20) %>　(实际字符长度:<%= H.getStrCodeLength(item.name) %>)</td>
+                    <td><%= i %></td>
+                    <td><%= i+1 %></td>
+                    <td>
+                        <%= i == 0 ? true : false %>
+                    </td>
+                    <td>
+                        <%= i == list.length - 1 ? true : false %>
+                    </td>
+                </tr>
+                <% }); %>
+            </table>
+            <div style="text-align: center">共<%= list.length %>条数据</div>
+        </div>
+    </script>
+</div>
+
+<script type="text/javascript">
+    $('#J-wrap-a').html(H.template($('#J-tpl-a').html(), {
+        partName: '事实上，template 是完全出自 underscore 的 _.template（进行了一定程度的阉割，不支持一些特殊符号的转义输出），也不能使用 underscore 的一些方法（因为 underscore 并无引入，当你引入了 underscore，你完全可以直接使用 _.template 而不需要使用 H.template）',
+        list: [{
+            name: '貂蝉',
+            weight: 45
+        },{
+            name: '大乔',
+            weight: 40
+        },{
+            name: '小乔',
+            weight: 42
+        },{
+            name: '凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！凤姐！超长很丑怎么办！',
+            weight: 100
+        }]
+    }))
+</script>
+</body>
+</html>

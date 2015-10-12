@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="renderer" content="webkit" />
+	<title></title>
+	<link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+	<h2>autocomplete</h2>
+	<ul>
+		<li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 童杰闻</li>
+		<li>使用方法请看源代码及注释</li>
+	</ul>	
+
+	<div style="height: 50px"></div>
+	<h2>Demo</h2>
+	<div class="input-append">
+	  <input type="search" id="search">
+	  <span class="add-on"><i class="icon-search"></i></span>
+	</div>
+
+	<input type="text" id="ajaxSearch">
+	<h5>更新列表</h5>
+	<div class="block">
+		<textarea id="update" style="width: 500px;height: 250px;">c.update(['Aaron','Abbott','Abel','Abner','Abraham','Adam','Addison','Adler','Adley','Adrian'])</textarea>
+		<br>
+		<button class="btn btn-default">Run</button>	
+	</div>
+	
+</div>
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="autocomplete/autocomplete.js"></script>
+<link href="autocomplete/autocomplete.css" rel="stylesheet">
+<script>
+	var c = HaierJS.autoComplete({
+			$input: $("#search"),
+			items: ["浏览器", "下载工具", "远程控制邮件处理", "FTP工具 ", "IP工具  网络推广", "网页制作", "网络辅助"]
+		});
+
+	// items 为 function 的例子
+	var a = HaierJS.autoComplete({
+			$input: $("#ajaxSearch"),
+			items: function(){
+				var This = this;
+				$.ajax({
+					url: 'data.json',
+					data: {},
+					dataType: 'json',
+					timeout: 20e3,
+			        error: function(a,b){alert(b);},
+					success: function(data) {
+						This.update(data.items)
+					}
+				});
+			}
+		});
+
+	$('.block button').on('click', function(){
+		eval($(this).siblings('textarea').val());
+	})
+</script>
+</body>
+</html>

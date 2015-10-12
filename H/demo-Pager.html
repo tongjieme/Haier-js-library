@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pager</title>
+    <link href="demo.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+
+    <link href="dist/css/H/H.min.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/H.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pager</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+
+    <div id="J-page-wrap-t"></div>
+    <br>
+    <div id="J-page-wrap-b"></div>
+
+    <br><br><br>
+
+    <div id="J-page-wrap-t2"></div>
+    <br>
+    <div id="J-page-wrap-b2"></div>
+
+
+    <script type="text/html" id="J-page-tpl-t">
+        <div class="ui-pager">
+            <span class="ui-pager-txt">
+                共<%= total %>条数据&nbsp;&nbsp;&nbsp;&nbsp;<em><%= apg %></em>&nbsp;/&nbsp;<%= pgc %>
+            </span>
+            <% $.each(els, function (i, item) { %>
+            <a class="J-page-to <%= item.cls %>" data-pg="<%= item.pg %>"><%= item.name %></a>
+            <% }) %>
+        </div>
+    </script>
+
+    <script type="text/html" id="J-page-tpl-b">
+        <div class="ui-pager">
+            <% $.each(els, function (i, item) { %>
+            <a class="J-page-to <%= item.cls %>" data-pg="<%= item.pg %>"><%= item.name %></a>
+            <% }) %>
+        </div>
+    </script>
+</div>
+
+<script type="text/javascript">
+    var pagerA = new H.Pager({
+        tplT : $('#J-page-tpl-t').html(),
+        tplB : $('#J-page-tpl-b').html(),
+        wrapT : $('#J-page-wrap-t'),
+        wrapB : $('#J-page-wrap-b'),
+        goToPageFunc : function (pageNum) {
+            pagerA.render({
+                pg: pageNum,
+                total: 120,
+                ps: 10
+            });
+        }
+    });
+
+    pagerA.render({
+        pg: 5,
+        total: 120,
+        ps: 10
+    });
+
+    var pagerB = new H.Pager({
+        tplT : $('#J-page-tpl-t').html(),
+        tplB : $('#J-page-tpl-b').html(),
+        wrapT : $('#J-page-wrap-t2'),
+        wrapB : $('#J-page-wrap-b2'),
+        goToPageFunc : function (pageNum) {
+            pagerB.render({
+                pg: pageNum,
+                total: 180,
+                ps: 10
+            });
+        }
+    });
+
+    pagerB.render({
+        pg: 8,
+        total: 180,
+        ps: 10
+    });
+</script>
+</body>
+</html>

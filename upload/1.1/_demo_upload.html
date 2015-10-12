@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<link href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+	<h2>uload 上传组件</h2>
+	<ul>
+		<li style="font-weight: bold;">此插件为纯html5缩写, 限制上传文件大小需要高级浏览器, 如需兼容 ie8 请转用 <a href="_demo_plupload.html">plupload</a></li>
+		<li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 童杰闻</li>
+		<li>使用方法请看源代码及注释</li>
+	</ul>	
+	
+	<div style="height: 50px"></div>
+	<h2>Demo</h2>
+	<input id="fileupload" type="file" name="file" accept="image/*" multiple style="display:none">
+	<label for="fileupload" class="btn btn-default">Upload</label>	
+
+</div>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<script src="js/script.js"></script>
+<link href="js/style.css" rel="stylesheet">
+<script>
+/*
+	基于 https://github.com/blueimp/jQuery-File-Upload
+	与官方API 完全兼容 的基础上增加:
+		formData: 可传object json 或者 返回json 的 function(){} 若为function 每次上传都为运行以拿到最新数据(常用于表单)
+	
+	若不熟悉可用 plupload.html
+*/
+	HaierJS.upload($("#fileupload"), {
+		url: "http://admin.main.test.hotoem.com/Common/UploadImage?dir=image",
+		formData: {}, // function(){return{}}
+		maxFileSize: 10000000, // 10 MB
+		onDone: function(data){
+			console.log("done");	
+			console.log(data.result);
+		},
+		onProgress: function(file, progress){
+			console.log('正在上传 ' + progress + '%');
+		},
+		onAdd: function(data){
+			
+		},
+		onFail: function(textStatus){
+			console.log(textStatus);
+		}
+	})
+</script>
+</body>
+</html>

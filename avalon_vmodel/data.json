@@ -1,0 +1,12 @@
+{
+	"blogs": [
+		{
+			"title": "Blog from ajax",
+			"content": "Windows and Mac OS X users should just visit nodejs.org and click on the INSTALL button,Linux users can download pre-compiled binary files from https://nodejs.org/download/"
+		},
+		{
+			"title": "Blog from ajax",
+			"content": "Windows and Mac OS X users should just visit nodejs.org and click on the INSTALL button,Linux users can download pre-compiled binary files from https://nodejs.org/download/"
+		}
+	]
+}

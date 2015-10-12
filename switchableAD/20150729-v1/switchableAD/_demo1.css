@@ -1,0 +1,110 @@
+.ui-switchable-pannel-wrap{
+    width: 383px;
+    height: 483px;
+    overflow: hidden;
+    position: relative;
+}
+.ui-switchable-pannel-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+}
+.ui-switchable-pannel-list .item{
+    float: left;
+}
+.ui-switchable-trigger-wrap{
+    float: left;
+    width: 325px;
+    height: 79px;
+    overflow: hidden;
+    position: relative;
+}
+.ui-switchable-trigger-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+}
+.ui-switchable-trigger-list .item{
+    width: 57px;
+    height: 73px;
+    padding: 4px;
+    float: left;
+    cursor: pointer;
+    overflow: hidden;
+    list-style: none;
+    position: relative;
+}
+.ui-switchable-trigger-list .item img{
+    position: absolute;
+    z-index: 10;
+    vertical-align: bottom;
+}
+.ui-switchable-trigger-list .item .ui-slider-shadow{
+    width: 57px;
+    height: 73px;
+    position: absolute;
+    opacity: 0.1;
+    z-index: 20;
+}
+.ui-switchable-trigger-list .active .ui-slider-shadow{
+    background: 0 0;
+    opacity: 1;
+    width: 55px;
+    height: 71px;
+    border: 1px solid #f43499;
+}
+
+.ui-switchable-footer{
+    position: relative;
+    width: 383px;
+    height: 79px;
+    margin-right: 1px;
+    overflow: hidden;
+}
+.ui-switchable-btn{
+    float: left;
+    width: 29px;
+    height: 79px;
+    cursor: pointer;
+    text-align: center;
+}
+.ui-switchable-btn .arrow-in, .ui-switchable-btn .arrow-out{
+    display: inline-block;
+    font-size: 0;
+    width: 0;
+    height: 0;
+}
+.ui-switchable-btn .arrow-out{
+    position: relative;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #999 transparent transparent;
+    border-style: solid;
+    _border-style: dotted solid dotted dotted;
+    margin-top: 30px;
+}
+.ui-switchable-prev .arrow-out{
+    border-color: transparent #ccc transparent transparent;
+}
+.ui-switchable-next .arrow-out{
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #999;
+    border-style: solid;
+}
+.ui-switchable-btn .arrow-in{
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    _top: -6px;
+    border-width: 5px 5px 5px 0;
+    border-color: transparent #fcfafd transparent transparent;
+    border-style: solid;
+}
+.ui-switchable-next .arrow-in{
+    left: -10px;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent #fcfafd;
+    border-style: solid;
+    _border-style: dotted dotted dotted solid;
+}

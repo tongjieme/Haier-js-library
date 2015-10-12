@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="renderer" content="webkit" />
+	
+	<link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="js/distpicker.data.js"></script>
+	<script src="js/mydistpicker.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+	<h2>地区选择</h2>
+	<ul>
+		<li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 童杰闻</li>
+		<li>使用方法请看源代码及注释</li>
+	</ul>	
+
+	<div style="height: 50px"></div>
+	<h2>Demo</h2>
+	<div id="J-distpicker">
+	    <select data-selected="140000"></select>
+	    <select data-selected="140100"></select>
+	    <select data-selected="140105"></select>
+	</div>
+	
+</div>
+
+
+
+
+
+<script>
+	$(function() {
+		$("#J-distpicker").distpicker({});
+	});
+</script>
+</body>
+</html>

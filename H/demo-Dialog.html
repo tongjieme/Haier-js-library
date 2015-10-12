@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog</title>
+    <link href="demo.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+
+    <link href="dist/css/H/H.min.css" rel="stylesheet" type="text/css">
+    <script src="dist/js/H.min.js"></script>
+
+    <style>
+        .demo-div{
+            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 14px;
+            font-family: 微软雅黑;
+            line-height: 1.5;
+        }
+
+        button{
+            background: #0054a7;
+            color: #fff;
+            padding: 6px 20px;
+            border: none;
+            width: auto;
+            overflow: visible;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        .btn-disabled{
+            background: #ccc;
+        }
+
+        .tpl{
+            width: 400px;
+        }
+        .tpl table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tpl th{
+            height: 40px;
+        }
+        .tpl td{
+            height: 30px;
+        }
+        .tpl td, .tpl th{
+            padding: 0 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Dialog</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+        <li style="color: #f00">温馨提示：部分样式如果和网站风格不一，请联系前端做调整。</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+    <p style="padding: 10px 0; line-height: 25px;">
+        原版官方文档：<a href="http://aui.github.io/artDialog/doc/index.html" target="_blank">http://aui.github.io/artDialog/doc/index.html</a><br>
+        如果例子中的属性配置不能满足需要，可参考原版官方文档
+    </p>
+
+    <div class="demo-div">
+        弹窗里嵌入html
+    </div>
+    <button id="J-button-demo01">点击我弹窗</button>
+
+    <div class="demo-div">
+        弹窗里只显示文案
+    </div>
+    <button id="J-button-demo02">点击我弹窗</button>
+
+    <div class="demo-div">
+        对话框形式弹窗
+    </div>
+    <button id="J-button-demo03">点击我弹窗</button>
+
+    <div class="demo-div">
+        alert代理
+    </div>
+    <button id="J-button-demo04">点击我弹窗</button>
+
+    <div class="demo-div">
+        高级用法，弹窗DOM不会销毁
+    </div>
+    <button id="J-button-demo05">点击我弹窗</button>
+
+    <div class="demo-div">
+        Iframe 表示也加入到 dialog 家族了
+    </div>
+    <button id="J-button-demo06">点击我弹窗</button>
+
+    <script type="text/html" id="J-tpl-demo01">
+        <div class="tpl">
+            <table>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                </tr>
+                <tr>
+                    <td>张三</td>
+                    <td>30</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>张三</td>
+                    <td>30</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>张三</td>
+                    <td>30</td>
+                    <td>男</td>
+                </tr>
+            </table>
+        </div>
+    </script>
+</div>
+
+<script type="text/javascript">
+    $('#J-button-demo01').on('click', function(){
+        //定义一个弹窗
+        var d = H.dialog({
+            title: '弹窗标题',
+            content: $('#J-tpl-demo01').html(),//弹窗内容
+            quickClose: true,//点击空白处快速关闭
+            padding: 5,//弹窗内边距
+            width: 400,//弹窗宽度(缺省时为自适应，但默认最大宽度为1000)
+            height: 200,//弹窗高度(缺省时为自适应，但默认最大高度为600)
+            backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+            onshow: function(){
+                //alert('弹窗弹出后执行的回调');
+            },
+            onclose: function(){
+                //alert('弹窗关闭后执行的回调');
+            }
+        });
+        //显示弹窗
+        d.show();
+    });
+
+    $('#J-button-demo02').on('click', function(){
+        var d = H.dialog({
+            title: 'Title',//弹窗标题
+            content: '这里只显示文案',//弹窗内容
+            timeout: 3000,//多长时间后自动关闭（单位：毫秒）
+            quickClose: true,//点击空白处快速关闭
+            width: 300,
+            backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+            onshow: function(){
+                //alert('弹窗弹出后执行的回调');
+            }
+        });
+
+        d.show();
+    });
+
+    $('#J-button-demo03').on('click', function(){
+        var d = H.confirm({
+            content: '你确定要打我？',//弹窗内容
+            quickClose: true,//点击空白处快速关闭
+            width: 300,
+            okValue: '确定',
+            backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+            ok: function () {
+                alert('点击[确定]按钮执行的回调');
+            },
+            cancelValue: '取消',
+            cancel: function () {
+                alert('点击[取消]按钮执行的回调');
+            }
+        });
+
+        d.show();
+    });
+
+    $('#J-button-demo04').on('click', function(){
+        H.alert('提示框标题', '一串提示语...');
+    });
+
+
+    //定义一个弹窗
+    var myDialog = H.dialog({
+        showCloseBtn: true,//是否生成关闭按钮（当title属性没设置时，此属性才会生效，默认为true，设置为false时，就不会为用户生成关闭按钮）
+        setMaxSize: true,//是否指定弹窗的最大高度（默认为true，绝大多数情况下使用默认值即可，特殊情况下可设为false）
+        content: $('#J-tpl-demo01').html(),//弹窗内容
+        quickClose: true,//点击空白处快速关闭
+        padding: 5,//弹窗内边距(当title属性没设置时,且showCloseBtn属性设置为true或者没设置【默认值就是true】，padding属性会被强制设置为0)
+        width: 400,//弹窗宽度(缺省时为自适应，但默认最大宽度为1000)
+        height: 200,//弹窗高度(缺省时为自适应，但默认最大高度为600)
+        removeFlag: false,//【高级选项】关闭窗口时，是否销毁dom，默认为true，当设置为false时，【quickClose】配置会强制设为false（因为quickClose触发的关闭弹窗会把dom销毁）
+        backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+        onshow: function(){
+            //alert('弹窗弹出后执行的回调');
+        },
+        onclose: function(){
+            //alert('弹窗关闭后执行的回调');
+        }
+    });
+
+    $('#J-button-demo05').on('click', function(){
+        //不会自动销毁的弹窗，请使用 showModal 显示出来，否则遮罩层会无法显示
+        myDialog.showModal();
+    });
+
+    $('#J-button-demo06').on('click', function(){
+        var d = H.frameBox({
+            title: 'iframe弹窗',
+            content: 'demo-iframeInnerPage.html',//iframe 弹窗内容,也就是iframe 的 src
+            width: 800,
+            height: '80%',
+            onshow: function(){
+                //alert('弹窗弹出后执行的回调');
+            },
+            onclose: function(){
+                //alert('弹窗关闭后执行的回调');
+            }
+        });
+
+        d.show();
+    });
+</script>
+</body>
+</html>

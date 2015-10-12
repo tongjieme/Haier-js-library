@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SwitchableAD</title>
+    <link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.useso.com/js/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="dist/js/H.min.js"></script>
+
+    <style>
+        *{
+            box-sizing: content-box;
+            font-family: 微软雅黑;
+        }
+
+        .ui-switchable-pannel-wrap{
+            width: 383px;
+            height: 483px;
+            overflow: hidden;
+            position: relative;
+        }
+        .ui-switchable-pannel-list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+        }
+        .ui-switchable-pannel-list .item{
+            width: 383px;
+            height: 483px;
+            float: left;
+        }
+        .ui-switchable-pannel-list .item img{
+            width: 383px;
+            height: 483px;
+            float: left;
+        }
+        .ui-switchable-footer{
+            position: relative;
+            width: 383px;
+            height: 79px;
+            margin-right: 1px;
+            overflow: hidden;
+        }
+        .ui-switchable-trigger-wrap{
+            float: left;
+            width: 325px;
+            height: 79px;
+            overflow: hidden;
+            position: relative;
+        }
+        .ui-switchable-trigger-list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+        }
+        .ui-switchable-trigger-list .item{
+            width: 57px;
+            height: 73px;
+            padding: 4px;
+            float: left;
+            cursor: pointer;
+            overflow: hidden;
+            list-style: none;
+            position: relative;
+        }
+        .ui-switchable-trigger-list .item img{
+            position: absolute;
+            z-index: 10;
+            vertical-align: bottom;
+            width: 57px;
+            height: 73px;
+        }
+        .ui-switchable-trigger-list .item .ui-slider-shadow{
+            width: 57px;
+            height: 73px;
+            position: absolute;
+            opacity: 0.1;
+            z-index: 20;
+        }
+        .ui-switchable-trigger-list .active .ui-slider-shadow{
+            background: 0 0;
+            opacity: 1;
+            width: 55px;
+            height: 71px;
+            border: 1px solid #f43499;
+        }
+
+        .ui-switchable-btn{
+            float: left;
+            width: 29px;
+            height: 79px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .ui-switchable-btn .arrow-in, .ui-switchable-btn .arrow-out{
+            display: inline-block;
+            font-size: 0;
+            width: 0;
+            height: 0;
+        }
+        .ui-switchable-btn .arrow-out{
+            position: relative;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #999 transparent transparent;
+            border-style: solid;
+            _border-style: dotted solid dotted dotted;
+            margin-top: 30px;
+        }
+        .ui-switchable-prev .arrow-out{
+            border-color: transparent #ccc transparent transparent;
+        }
+        .ui-switchable-next .arrow-out{
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #999;
+            border-style: solid;
+        }
+        .ui-switchable-btn .arrow-in{
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            _top: -6px;
+            border-width: 5px 5px 5px 0;
+            border-color: transparent #fcfafd transparent transparent;
+            border-style: solid;
+        }
+        .ui-switchable-next .arrow-in{
+            left: -10px;
+            border-width: 5px 0 5px 5px;
+            border-color: transparent transparent transparent #fcfafd;
+            border-style: solid;
+            _border-style: dotted dotted dotted solid;
+        }
+
+
+        .list-wrap{
+            position: relative;
+            width: 660px;
+            height: 80px;
+            overflow: hidden;
+        }
+        .list{
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list li{
+            width: 100px;
+            height: 80px;
+            padding: 0 5px;
+            float: left;
+        }
+        .list li img{
+            width: 100px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>SwitchableAD</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+    <div class="ui-switchable-pannel-wrap">
+        <ul id="J-panel-list" class="ui-switchable-pannel-list">
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=0"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=1"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=2"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=3"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=4"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=5"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=6"></li>
+            <li class="item"><img src="https://unsplash.it/g/400/500?image=7"></li>
+        </ul>
+    </div>
+
+    <div class="ui-switchable-footer" id="J-sImgSlide-wrap">
+        <span class="ui-switchable-btn ui-switchable-prev" id="J-btn-prev">
+            <em class="arrow-out"><em class="arrow-in"></em></em>
+        </span>
+
+        <div class="ui-switchable-trigger-wrap">
+            <ul id="J-trigger-list" class="ui-switchable-trigger-list">
+                <!-- 添加 active 表示当前状态 -->
+                <li class="item active">
+                    <img src="https://unsplash.it/g/400/500?image=0">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=1">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=2">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=3">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=4">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=5">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=6">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+                <li class="item">
+                    <img src="https://unsplash.it/g/400/500?image=7">
+                    <span class="ui-slider-shadow"></span>
+                </li>
+            </ul>
+        </div>
+
+        <span class="ui-switchable-btn ui-switchable-next" id="J-btn-next">
+            <em class="arrow-out"><em class="arrow-in"></em></em>
+        </span>
+    </div>
+
+    <br><br><br><br><br>
+    <p>虽然这是个老掉牙的效果，但这样用也是可以的~</p>
+    <div class="list-wrap">
+        <ul id="J-panel-list-b" class="list">
+            <li><img src="https://unsplash.it/g/400/500?image=0"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=1"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=2"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=3"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=4"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=5"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=6"></li>
+            <li><img src="https://unsplash.it/g/400/500?image=7"></li>
+        </ul>
+    </div>
+
+    <br><br><br><br><br>
+</div>
+
+<script type="text/javascript">
+    /*
+    * switchableAD对样式和DOM结构有很强的依赖性
+    * 所以使用前一般需要联系我调整样式，或者直接拿demo样式作修改
+    * */
+    var switchable = new H.SwitchableAD({
+        effect: 'fadeX',
+        panelDom: $('#J-panel-list'),//滚动列表（必传）
+        triggerDom: $('#J-trigger-list'),//事件触发列表
+        triggerDomEvent: 'mouseover',//事件触发列表 轮播切换触发方式（可缺省,默认值：click）
+        prevDom: $('#J-btn-prev'),//上一张按钮（没有的话可缺省）
+        nextDom: $('#J-btn-next'),//下一张按钮（没有的话可缺省）
+        trigger: 'click',//轮播切换触发方式（可缺省,默认值：click）
+        activeCls: 'active',//事件触发列表，表示当前项的css class（可缺省,默认值：active）
+        interval: 2000,//滚动间隔（可缺省,默认值：3000，单位：毫秒）
+        scrollTriggerDom: true//事件触发列表滚动开关（此demo中就用到，图片下方的小图区需要滚动，可缺省,默认值：false）
+    });
+
+    switchable.initAD();
+
+    var _switchable = new H.SwitchableAD({
+        effect: 'slideX',
+        panelDom: $('#J-panel-list-b'),//滚动列表（必传）
+        interval: 2000//滚动间隔（可缺省,默认值：3000，单位：毫秒）
+    });
+
+    _switchable.initAD();
+</script>
+</body>
+</html>

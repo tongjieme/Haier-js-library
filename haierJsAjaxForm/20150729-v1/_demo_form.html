@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>haierJsAjaxForm</title>
+    <link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.useso.com/js/jquery/1.11.1/jquery.min.js"></script>
+
+    <link href="haierJsAjaxForm/haierJsAjaxForm.css" rel="stylesheet">
+    <script src="haierJsAjaxForm/haierJsAjaxForm.js"></script>
+    <style>
+        .demo-div{
+            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 14px;
+            font-family: 微软雅黑;
+            line-height: 1.5;
+            width: 600px;
+        }
+
+        button{
+            background: #0054a7;
+            color: #fff;
+            padding: 6px 20px;
+            border: none;
+            width: auto;
+            overflow: visible;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        .btn-disabled{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>haierJsAjaxForm</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋/漆燮</b></li>
+        <li>使用方法请看源代码及注释</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+
+    <div class="demo-div">
+        /*<br>
+        * HaierJS.form 方法，自带表单验证，使用方法和 validationEngine 一样，只是在它的基础上进行了改造和封装<br>
+        * 如果表单提交切换成异步请求这种模式用得不爽，用原来的方法也支持<br>
+        *<br>
+        * HaierJS.form 方法的优点：<br>
+        * 1.可以指定表单提交，发送期间，需要设置成不可点击状态的按钮 —— disabledBtn<br>
+        * 2.可以指定表单验证成功后，发出请求前的回调函数 —— beforeSubmit<br>
+        * 3.可以指定异步请求发出，并成功获得数据返回时的回调函数，相当于 Jquery 中 $.ajax 方法的 success —— afterSuccess<br>
+        * 4.可以指定异步请求发出，异步请求出错时的回调函数，相当于 Jquery 中 $.ajax 方法的 success —— afterSuccess<br>
+        * 5.可以指定异步请求发出后（不管是否得到服务器相应）的回调函数 —— afterError<br>
+        * 6.执行先后顺序 beforeSubmit -> afterSuccess or afterError -> afterSubmit<br>
+        *<br>
+        * 说明：<br>
+        * form 元素的 method 属性，将会被用作 ajax 请求的 type<br>
+        * form 元素的 action 属性，将会被用作 ajax 请求的 url<br>
+        * form 里面各个控件的 value，将会被用作 ajax 请求的 data<br>
+        * */<br><br><br>
+
+        <h4>表单A —— 发送异步post请求</h4>
+        <form id="J-validate-form-a" method="post" action="/data/orderList.aspx">
+            <div class="form-group">
+                <input name="userName" type="text" class="validate[required] form-control" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <input name="password" type="password" class="validate[required,minSize[3]] form-control" placeholder="密码" id="pwd">
+            </div>
+            <div class="form-group">
+                <input name="password_ag" type="password" class="validate[required,equals[pwd]] form-control" placeholder="再次输入密码">
+            </div>
+
+            <button id="J-button-submit-a" type="submit">submit</button>
+        </form>
+
+        <br><br><br>
+
+        <h4>表单B —— 常规form提交</h4>
+        <form id="J-validate-form-b" method="post" action="/data/orderList.aspx">
+            <div class="form-group">
+                <input name="userName" type="text" class="validate[required] form-control" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <input name="password" type="password" class="validate[required,minSize[3]] form-control" placeholder="密码" id="pwd">
+            </div>
+            <div class="form-group">
+                <input name="password_ag" type="password" class="validate[required,equals[pwd]] form-control" placeholder="再次输入密码">
+            </div>
+
+            <button id="J-button-submit-b" type="submit">submit</button>
+        </form>
+
+        <br><br><br>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    /*
+    * HaierJS.form 方法，自带表单验证，使用方法和 validationEngine 一样，只是在它的基础上进行了改造和封装
+    *
+    * HaierJS.form 方法的优点：
+    * 1.可以指定表单提交，发送期间，需要设置成不可点击状态的按钮 —— disabledBtn
+    * 2.可以指定表单验证成功后，发出请求前的回调函数 —— beforeSubmit
+    * 3.可以指定异步请求发出，并成功获得数据返回时的回调函数，相当于 Jquery 中 $.ajax 方法的 success
+    * 4.可以指定异步请求发出，异步请求出错时的回调函数，相当于 Jquery 中 $.ajax 方法的 error
+    * 5.可以指定异步请求发出后（不管是否得到服务器响应）的回调函数 —— afterSubmit
+    * 6.执行先后顺序 beforeSubmit -> afterSuccess or afterError -> afterSubmit
+    * 7.所有回调都可缺省，不需要用可不配
+    * 8.所有回调函数都只在 asyncRequest 为 true 时生效
+    *
+    * 说明：
+    * form 元素的 method 属性，将会被用作 ajax 请求的 type
+    * form 元素的 action 属性，将会被用作 ajax 请求的 url
+    * form 里面各个控件的 value，将会被用作 ajax 请求的 data
+    * */
+
+    //下面是发送异步请求的用法
+    HaierJS.form({
+        asyncRequest: true, //是否发送异步请求（默认是false，也就是缺省此配置的情况下是表单直接提交）
+        target: $("#J-validate-form-a"), //表单的Jquery对象
+        disabledBtn: $("#J-button-submit-a"), //表单提交按钮Jquery对象，作用是让按钮转换成不可点击状态
+        beforeSubmit: function(){
+            HaierJS.log("表单验证成功，表单提交前触发的回调函数！");
+        },
+        success: function(){
+            HaierJS.log("异步请求发出，并成功获得数据返回时的回调！");
+        },
+        error: function(){
+            HaierJS.log("异步请求出错时的回调函数！");
+        },
+        afterSubmit: function(){
+            HaierJS.log("表单提交完成后，触发的回调函数！");
+        }
+    });
+
+    //下面是表单直接提交的用法
+    HaierJS.form({
+        target: $("#J-validate-form-b"), //表单的Jquery对象
+        disabledBtn: $("#J-button-submit-b") //表单提交按钮Jquery对象，作用是让按钮转换成不可点击状态，需要注意的是，如果是表单直接提交，按钮切换状态5秒后会自动恢复回正常状态
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.uploadProgress {
+	width: 300px;
+	position: fixed;
+	right: 20px;
+	bottom: 0;
+	background: white;
+	color: black;
+	box-shadow: 0 12px 20px -10px rgba(81,64,49,0.6);
+}
+.uploadProgress.minified > div {
+	height: 0;
+	overflow: hidden;
+}
+.uploadProgress.minified > div::-webkit-scrollbar {
+	display: none; 
+}
+h5.header {
+	margin: 0;
+	line-height: 1;
+	color: white;
+	background: #313131;
+	padding: 5px 10px;
+	height: 25px;
+}
+.uploadProgress > div {
+	height: 125px;
+	overflow: scroll;
+	border: 1px solid #C5C5C5;
+	transition:      all 0.2s ease;
+}
+.fa-cloud-upload {
+	margin-right: 5px;
+}
+.minify {
+	float: right;
+	cursor: pointer;
+}
+.list {
+	padding: 5px 10px;
+		font-size: 12px;
+}
+.list span.name {
+	display: inline-block;
+	width: 240px;
+	overflow: hidden;
+}
+.list span.progress {
+	float: right;
+}
+.list:nth-child(2n) {
+	background: #f1f1f1;
+	border-top: 1px solid #DBDBDB;
+	border-bottom: 1px solid #DBDBDB;
+}
+.list:last-child {
+	margin-bottom: 50px;
+}

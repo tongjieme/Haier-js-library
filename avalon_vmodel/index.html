@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<title></title>
+	<meta http-equiv="x-ua-compatible" content="IE=10">
+
+	<link rel="stylesheet" href="style.css">
+	<link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="js/avalon.shim.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		var rootCtrl = avalon.define({
+			$id: "rootCtrl",
+			header: "Login Form",
+			username: '',
+			password: '',
+			loginInfo: {
+				isLogined: false,
+				name: 'John doe',
+				mobile: '156-2212-6362',
+				blogs: [{
+					title: 'Install Node.js:',
+					content: 'Windows and Mac OS X users should just visit nodejs.org and click on the INSTALL button,Linux users can download pre-compiled binary files from https://nodejs.org/download/'
+				},{
+					title: 'Install required Node.js CLI apps:',
+					content: 'From a shell window (Terminal on Mac OS X, CMD.exe on Windows) issue the following command:'
+				}]
+			},
+			login: function(){
+				rootCtrl.loginInfo.isLogined = true;
+			},
+			logout: function(){
+				rootCtrl.loginInfo.isLogined = false;
+			},
+			isShowNewBlog: false,
+			newBlog_title: '',
+			newBlog_content: '',
+			toggleNewBlog: function(){
+				rootCtrl.isShowNewBlog = !rootCtrl.isShowNewBlog;
+			},
+			save: function(){
+				rootCtrl.loginInfo.blogs.push({
+					title: rootCtrl.newBlog_title,
+					content: rootCtrl.newBlog_content
+				});
+				rootCtrl.newBlog_title = '';
+				rootCtrl.newBlog_content = '';
+			},
+			getData: function(){
+				return JSON.parse(JSON.stringify(avalon.vmodels.rootCtrl.$model));
+			},
+			updateBlog: function(){
+				$.ajax({
+					url: 'data.json',
+					dataType: 'json',
+					timeout: 20e3,
+			        error: function(a,b){alert(b);},
+					success: function(data) {
+						rootCtrl.loginInfo.blogs = data.blogs
+					}
+				});
+			},
+			isEditInfo: false,
+			edit: function(){
+				rootCtrl.isEditInfo = !rootCtrl.isEditInfo;
+			}
+		})
+
+		var dump = function(){
+			$.each(avalon.vmodels, function(k, v){
+				console.log(k);
+				console.log(v.$model);
+			});
+		}
+	</script>
+</head>
+<body ms-controller="rootCtrl">
+	
+	<div class="container-fluid">
+		<div class="navbar">
+		  <div class="navbar-inner">
+		    <a class="brand" href="#">Home</a>
+		    <ul class="nav" ms-if="loginInfo.isLogined">
+		      <li><a href="#" ms-click="logout()">Logout</a></li>
+		    </ul>
+		  </div>
+		</div>
+
+		<form id="loginForm" ms-if="!loginInfo.isLogined">
+			<h5 class="">{{header}}</h5>
+			<div class="form-group">
+				<input type="text" placeholder="Username" ms-duplex="username">
+			</div>
+			<div class="form-group">
+				<input type="password" placeholder="Password" ms-duplex="password">
+			</div>
+			<button type="button" class="btn btn-default" ms-click="login()">Submit</button>
+			<br><br>
+			<p ms-visible="username !== ''">用户名: {{username}}</p>
+			<p ms-visible="password !== ''">密码: {{password}}</p>
+		</form>
+
+		<div class="blogs" ms-if="loginInfo.isLogined">
+			<p>Hello: {{loginInfo.name}}</p>
+			<h1>My blog</h1>
+			<section ms-repeat="loginInfo.blogs">
+				<h2>{{$index + 1}} - {{el.title}}</h2>
+				<article>
+					{{el.content}}
+				</article>
+			</section>
+
+			<h1 style="margin-top: 20px">User info</h1>
+			<ul>
+				<li>
+					Name: <span ms-visible="!isEditInfo">{{loginInfo.name}}</span>
+					<input type="text" placeholder="Name" ms-duplex="loginInfo.name" ms-visible="isEditInfo">
+				</li>
+				<li>
+					Mobile: <span ms-visible="!isEditInfo">{{loginInfo.mobile}}</span>
+					<input type="text" placeholder="Mobile" ms-duplex="loginInfo.mobile" ms-visible="isEditInfo">
+				</li>
+				<li>
+					<button type="button" class="btn" ms-click="edit()">Toggle Edit</button>
+				</li>
+			</ul>
+
+			
+			<div class="btn-group">
+			  <button class="btn" ms-click="updateBlog">Update</button>
+			  <button class="btn" ms-click="toggleNewBlog">newBlog</button>
+			</div>
+
+			<section id="newPost" ms-if="isShowNewBlog">
+				<input type="text" ms-duplex="newBlog_title" placeholder="Title:"><br>
+				<textarea ms-duplex="newBlog_content" rows="3" placeholder="Content:"></textarea><br>
+				<button type="button" class="btn" ms-click="save()"><i class="icon-ok"></i>Save</button>
+			</section>
+		</div>
+
+	</div>
+
+	
+</body>
+
+
+</html>

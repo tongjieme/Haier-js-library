@@ -20,6 +20,9 @@ var d = H.dialog({
     backdropOpacity: 0.7,
     onshow: function(){
         //alert('弹窗弹出后执行的回调');
+    },
+    onremove: function(){
+        //alert('弹窗移除后执行的回调');
     }
 });
 

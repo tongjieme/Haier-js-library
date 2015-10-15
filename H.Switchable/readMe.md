@@ -32,43 +32,43 @@ Switchable 初始化时可以传入一个对象，对象的属性就是配置项
   
 ###effect 【String】
 轮播切换效果，可用值：fadeX、slideX、fadeY、slideY （可缺省，默认值：slideX）
-<br />
+<br /><br />
 
 ###panelDom 【Jquery Obj】
 轮播切换列表，将对其内部子元素进行轮播
-<br />
+<br /><br />
 
 ###triggerDom 【Jquery Obj】
 事件触发列表，与轮播切换列表一一对应，点击对应的子节点，就会切换到对应的轮播区域
-<br />
+<br /><br />
 
 ###triggerDomEvent 【String】
 【事件触发列表】轮播切换触发方式 （可缺省，默认值：click）
-<br />
+<br /><br />
 
 ###prevDom 【Jquery Obj】
 跳转至上一张按钮 （可缺省）
-<br />
+<br /><br />
 
 ###nextDom 【Jquery Obj】
 跳转至下一张按钮 （可缺省）
-<br />
+<br /><br />
 
 ###trigger 【String】
 【prev、next按钮】轮播切换触发方式 （可缺省，默认值：click）
-<br />
+<br /><br />
 
 ###activeCls 【String】
 【事件触发列表】表示当前项的 css class （可缺省，默认值：active）
-<br />
+<br /><br />
 
 ###interval 【Int】
 轮播间隔（可缺省，默认值：3000，单位：毫秒）
-<br />
+<br /><br />
 
 ###scrollTriggerDom 【Bool】
 事件触发列表滚动开关（高级扩展选项，控制图片下方的小图区是否需要滚动，可缺省，默认值：false）
-<br />
+<br /><br />
 
 <br />
 

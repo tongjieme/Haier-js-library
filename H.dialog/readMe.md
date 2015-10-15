@@ -98,11 +98,11 @@ dialog 初始化时可以传入一个对象，对象的属性就是配置项，�
 <br /><br />
 
 ###onremove 【Function】
-弹窗移除后执行的回调（请与 onclose 区别开来，大多数情况下请用 onremove，只有在 removeFlag 设为 false 时，采用 onclose）
+弹窗移除后执行的回调（请与 onclose 区别开来，大多数情况下请用 onremove，只有在 removeFlag 设为 false 时，才用 onclose）
 <br /><br />
 
 ###onclose 【Function】
-弹窗关闭后执行的回调（请与 onclose 区别开来，大多数情况下请用 onremove，只有在 removeFlag 设为 false 时，采用 onclose）
+弹窗关闭后执行的回调（请与 onclose 区别开来，大多数情况下请用 onremove，只有在 removeFlag 设为 false 时，才用 onclose）
 <br /><br />
 
 ###showCloseBtn 【Bool】

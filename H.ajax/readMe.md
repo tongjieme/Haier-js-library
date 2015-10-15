@@ -5,7 +5,7 @@
 插件提供了 H.ajax，H.get，H.post 三个方法  
 参数与 jquery 的 $.ajax 方法一致，且新增了一系列自定义属性： 
   
-**reloadTimeout**  
+##reloadTimeout  
 页面自动刷新延时(单位：毫秒，可缺省，不传的话页面立即刷新)  
 
 **beforeReload**  

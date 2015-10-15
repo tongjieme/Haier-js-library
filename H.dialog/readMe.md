@@ -40,7 +40,7 @@ var myDialog = H.dialog({
     width: 400,
     height: 200,
     removeFlag: false,
-    backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+    backdropOpacity: 0.7,
     onshow: function(){
         //alert('弹窗弹出后执行的回调');
     },
@@ -85,12 +85,8 @@ dialog 初始化时可以传入一个对象，对象的属性就是配置项，�
 多长时间后自动关闭（单位：毫秒）
 <br /><br />
 
-###activeCls 【String】
-【事件触发列表】表示当前项的 css class （可缺省，默认值：active）
-<br /><br />
-
-###backdropOpacity 【String】
-【事件触发列表】表示当前项的 css class （可缺省，默认值：active）
+###backdropOpacity 【Number】
+遮罩层透明度 (默认0.7)
 <br /><br />
 
 ###onshow 【Function】

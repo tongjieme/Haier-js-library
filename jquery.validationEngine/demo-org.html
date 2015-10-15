@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery.validationEngine</title>
+    <link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.useso.com/js/jquery/1.11.1/jquery.min.js"></script>
+
+    <link href="css/jquery.validationEngine.css" rel="stylesheet">
+    <script src="js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="js/jquery.validationEngine.js"></script>
+    <style>
+        .demo-div{
+            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 14px;
+            font-family: 微软雅黑;
+            line-height: 1.5;
+            width: 600px;
+        }
+
+        button{
+            background: #0054a7;
+            color: #fff;
+            padding: 6px 20px;
+            border: none;
+            width: auto;
+            overflow: visible;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        .btn-disabled{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>jquery.validationEngine【原版】</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋/漆燮</b></li>
+        <li>使用方法请看源代码及注释</li>
+        <li>官方gitHub：<a href="https://github.com/posabsolute/jQuery-Validation-Engine" target="_blank">https://github.com/posabsolute/jQuery-Validation-Engine</a></li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+
+    <div class="demo-div">
+        <form id="J-validate-form-a" method="post" action="/data/orderList.aspx">
+            <div class="form-group">
+                <input name="userName" type="text" class="validate[required,custom[noChinese]] form-control" placeholder="用户名">
+            </div>
+            <div class="form-group">
+                <input name="password" type="password" class="validate[required,minSize[3]] form-control" placeholder="密码" id="pwd">
+            </div>
+            <div class="form-group">
+                <input name="password_ag" type="password" class="validate[required,equals[pwd]] form-control" placeholder="再次输入密码">
+            </div>
+
+            <button id="J-button-submit-a" type="submit">submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $('#J-validate-form-a').validationEngine();
+</script>
+</body>
+</html>

@@ -8,13 +8,13 @@
 ###reloadTimeout  
 页面自动刷新延时(单位：毫秒，可缺省，不传的话页面立即刷新)  
 
-**beforeReload**  
+###beforeReload  
 页面刷新前的回调 
 
-**pageChangeTimeout**  
+###pageChangeTimeout  
 页面自动跳转延时(单位：毫秒，可缺省，不传的话页面立即刷新)  
 
-**beforePageChange**  
+###beforePageChange  
 页面跳转前的回调  
 
 此外，参数对象的 url 和 success 属性是必传的。如果参数对象缺少两者其中之一，返回false，并在控制台显示缺少必要参数的提示信息。  

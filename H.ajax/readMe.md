@@ -25,9 +25,9 @@
 
 <br />
 
-此外，参数对象的 url 和 success 属性是必传的。如果参数对象缺少两者其中之一，返回false，并在控制台显示缺少必要参数的提示信息。  
-当接口返回Result为false。success回调不执行，但会在控制台返回错误信息。  
-同时也会调用error回调，并传入两个参数（Result 和 Msg）。  
+此外，参数对象的 url 和 success 属性是必传的。如果参数对象缺少两者其中之一，返回 false，并在控制台显示缺少必要参数的提示信息。  
+当接口返回 Result 为 false。 success 回调不执行，但会在控制台返回错误信息。  
+同时也会调用 error 回调，并传入两个参数（Result 和 Msg）。  
 这里与正常的 ajax error 回调在参数上区别开来.  
 假如你希望 error 回调只在正常的 ajax error 状态下执行，可以加入判断 if(arguments[0]){...} ,反之亦然。
 

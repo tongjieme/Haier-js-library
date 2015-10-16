@@ -12,7 +12,7 @@
 <br />
   
 ##H.Util 所包含的工具有：
-* **[Monitor](#H.Monitor)**<br />
+* **Monitor**<br />
 监听器，可以监听信息，并在接收到信息后触发指定的回调函数。也可以理解为一种脱离 DOM 的事件定义和处理工具<br /><br />
 * **Storage**<br />
 本地缓存，假如浏览器不支持 localStorage，会改用 userData 来实现同样的功能，因此有很高兼容性<br /><br />

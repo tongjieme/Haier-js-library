@@ -387,15 +387,15 @@ H.subStrByCode('超长的东东1律kaca掉~~~超长的东东1律kaca掉~~~', 20)
 
 <br />
 
-#<a name="DateFormat"></a>DateObj.dateFormat
-DateObj.dateFormat 是对 Date 对象的方法扩展：<br />
+#<a name="DateFormat"></a>DateObj.format
+DateObj.format 是对 Date 对象的方法扩展：<br />
 <br /><br />
 下面是调用实例，注释是参数说明：
 ```
 /*
- * DateObj.dateFormat(fomateType)
+ * DateObj.format(type)
  * 参数说明：
- * fomateType 【String】 和大多数的日期格式化方法一样，由不同字母构成不同的格式化规则：
+ * type 【String】 和大多数的日期格式化方法一样，由不同字母构成不同的格式化规则：
  * y - 年
  * M - 月
  * d - 日
@@ -409,7 +409,7 @@ DateObj.dateFormat 是对 Date 对象的方法扩展：<br />
  * */
 
 var now = new Date();
-now.dateFormat('yyyy-MM-dd');
+now.format('yyyy-MM-dd');
 ```
 
 <br />

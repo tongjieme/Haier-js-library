@@ -201,3 +201,51 @@ HaierJS.JsLoader.get({
 ```
 
 <br />
+
+#<a name="Pager"></a>H.Pager
+H.Pager 是一个类，能生产多个实例。H.Pager 对象提供了1个方法：<br />
+**pagerObj.render**<br />
+<br /><br />
+下面是调用实例，注释是参数说明：
+```
+/*
+ * 构造函数 参数说明：
+ * 构造函数需要传入一个对象作为参数，该对象包含5个属性：
+ * tplT 【String】 列表上方分页模板（列表上方的简单分页）
+ * tplB 【String】 列表下方分页模板（列表下方的常规分页）
+ * wrapT 【JqueryObj】 列表上方分页容器（列表上方的简单分页）
+ * wrapB 【JqueryObj】 列表下方分页容器（列表上方的简单分页）
+ * goToPageFunc 【Function】 点击分页按钮后的回调，该函数包含一个参数 pageNum，表示要跳转的目标页页码
+ * */
+
+//实例化
+var pagerA = new H.Pager({
+    tplT : $('#J-page-tpl-t').html(),
+    tplB : $('#J-page-tpl-b').html(),
+    wrapT : $('#J-page-wrap-t'),
+    wrapB : $('#J-page-wrap-b'),
+    goToPageFunc : function (pageNum) {
+        //...
+    }
+});
+```
+
+```
+/*
+ * pagerObj.render
+ * 参数说明：
+ * 该方法传入一个对象作为参数，该对象包含3个属性：
+ * pg 【Int,Int-String】 当前页页码
+ * total 【Int,Int-String】 数据总数
+ * ps 【Int,Int-String】 每页条数
+ * */
+
+//渲染生成分页
+pagerA.render({
+    pg: 5,
+    total: 120,
+    ps: 10
+});
+```
+
+<br />

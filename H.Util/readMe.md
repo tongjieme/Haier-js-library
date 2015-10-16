@@ -232,9 +232,10 @@ var pagerA = new H.Pager({
 
 ```
 /*
- * pagerObj.render
+ * pagerObj.render(opts);
  * 参数说明：
- * 该方法传入一个对象作为参数，该对象包含3个属性：
+ * opts 【Obj】
+ * opts 对象包含了3个属性：
  * pg 【Int,Int-String】 当前页页码
  * total 【Int,Int-String】 数据总数
  * ps 【Int,Int-String】 每页条数
@@ -246,6 +247,105 @@ pagerA.render({
     total: 120,
     ps: 10
 });
+```
+
+<br />
+
+#<a name="Template"></a>H.Template
+H.Template 本身就是一个静态方法：<br />
+<br /><br />
+下面是调用实例，注释是参数说明：
+```
+/*
+ * H.template(text, data);
+ * 参数说明：
+ * text 【String】 需要编译的模板字符串
+ * data 【Object】 编译模板时所要传入的数据，注意它必须是一个对象，不能是一个数组，如果要传入数组，请在外部多包装一层
+ * */
+
+H.template($('#J-tpl-a').html(), {
+    partName: '美女排行榜',
+    list: [{
+        name: '貂蝉',
+        weight: 45
+    },{
+        name: '大乔',
+        weight: 40
+    },{
+        name: '小乔',
+        weight: 42
+    },{
+        name: '凤姐！很丑怎么办！',
+        weight: 100
+    }]
+});
+```
+
+<br />
+
+#<a name="Tooltips"></a>H.Tooltips
+H.Tooltips 对象包含3个方法：<br />
+**H.Tooltips.create、H.Tooltips.show、H.Tooltips.hide**<br />
+<br /><br />
+下面是3个方法的调用实例，注释是参数说明：
+```
+/*
+ * H.tooltips.create(opts);
+ * 参数说明：
+ * opts 【Obj】
+ * opts 对象包含了多个属性：
+ * target 【JqueryObject】 必传，需要添加 tooltips 的目标元素
+ * content 【String|function】 必传，提示框的内容，如果传入的是 function，则要求该函数必须返回一个字符串
+ * side 【string】 提示框展示在目标元素的哪一边（取值范围：'top'， 'bottom'， 'left'， 'right'）
+ * contSide 【string】 提示框内容部分展示配置，与 side 配合使用【string】（side 为 left 或 right 时的取值范围：'top'，'bottom'，'middle'; side 为 top 或 bottom 时的取值范围：'left'，'right'，'middle'; 注意，设置此属性后，插件将不会自动判断展示哪一侧）
+ * position 【Object - Int】 用来调整提示框的位置偏移的一个对象，包含两个属性 top 和 left， top 和 left 的值必须为数字
+ * width 【Int】 提示框的宽度（默认值：0， 默认情况下，宽度是自适应的，但是当 content 的内容是纯文本时，请务必设置 tooltips 宽度，否则可能会出现意想不到的意外结果出现）
+ * eventShow 【string】 提示框显示触发事件（默认值:'mouseenter'）
+ * eventHide 【string】 提示框隐藏触发事件（默认值:'mouseleave'，当 eventShow 的值为 'click' 时，eventHide 会被强行无效化。改为点击提示框以外的区域触发隐藏）
+ * onShow 【function】 提示框显示后的回调，有一个参数，传入的是所生成的提示框的 JqueryObject
+ * onHide 【function】 提示框隐藏后的回调，有一个参数，传入的是生成的提示框的 JqueryObject
+ * */
+
+H.tooltips.create({
+    target : $('#J-button-demo02'),
+    content : $('#J-tpl-demo01').html(),
+    side : 'bottom',
+    contSide : 'right', 
+    theme : 'info', //提示框主题【string】（默认值：''， 取值范围：''， 'info'， 'success'， 'warning'， 'error'）
+    position : {
+        top : 0,
+        left : 0
+    },
+    width : 0,
+    eventShow : 'click',
+    eventHide : 'blur', 
+    onShow : function ($toolTips) {
+        //alert('提示框显示了~');
+    },
+    onHide : function ($toolTips) {
+        //alert('提示框隐藏了~');
+    }
+});
+```
+
+```
+/*
+ * H.tooltips.show($target);
+ * 参数说明：
+ * $target 【JqueryObj】 tooltips 提示框的 JqueryObj
+ * */
+
+H.tooltips.show($('#J-tooltips-dom'));
+```
+
+```
+/*
+ * H.tooltips.hide($target);
+ * 参数说明：
+ * $target 【JqueryObj】 tooltips 提示框的 JqueryObj
+ * */
+
+H.tooltips.hide($('#J-tooltips-dom'));
 ```
 
 <br />

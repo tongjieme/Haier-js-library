@@ -251,8 +251,8 @@ pagerA.render({
 
 <br />
 
-#<a name="Template"></a>H.Template
-H.Template 本身就是一个静态方法：<br />
+#<a name="Template"></a>H.template
+H.template 本身就是一个静态方法：<br />
 <br /><br />
 下面是调用实例，注释是参数说明：
 ```
@@ -290,7 +290,7 @@ H.Tooltips 对象包含3个方法：<br />
 下面是3个方法的调用实例，注释是参数说明：
 ```
 /*
- * H.tooltips.create(opts);
+ * H.Tooltips.create(opts);
  * 参数说明：
  * opts 【Obj】
  * opts 对象包含了多个属性：
@@ -298,6 +298,7 @@ H.Tooltips 对象包含3个方法：<br />
  * content 【String|function】 必传，提示框的内容，如果传入的是 function，则要求该函数必须返回一个字符串
  * side 【string】 提示框展示在目标元素的哪一边（取值范围：'top'， 'bottom'， 'left'， 'right'）
  * contSide 【string】 提示框内容部分展示配置，与 side 配合使用【string】（side 为 left 或 right 时的取值范围：'top'，'bottom'，'middle'; side 为 top 或 bottom 时的取值范围：'left'，'right'，'middle'; 注意，设置此属性后，插件将不会自动判断展示哪一侧）
+ * theme 【string】 提示框主题（默认值：''， 取值范围：''， 'info'， 'success'， 'warning'， 'error'）
  * position 【Object - Int】 用来调整提示框的位置偏移的一个对象，包含两个属性 top 和 left， top 和 left 的值必须为数字
  * width 【Int】 提示框的宽度（默认值：0， 默认情况下，宽度是自适应的，但是当 content 的内容是纯文本时，请务必设置 tooltips 宽度，否则可能会出现意想不到的意外结果出现）
  * eventShow 【string】 提示框显示触发事件（默认值:'mouseenter'）
@@ -306,12 +307,12 @@ H.Tooltips 对象包含3个方法：<br />
  * onHide 【function】 提示框隐藏后的回调，有一个参数，传入的是生成的提示框的 JqueryObject
  * */
 
-H.tooltips.create({
+H.Tooltips.create({
     target : $('#J-button-demo02'),
     content : $('#J-tpl-demo01').html(),
     side : 'bottom',
     contSide : 'right', 
-    theme : 'info', //提示框主题【string】（默认值：''， 取值范围：''， 'info'， 'success'， 'warning'， 'error'）
+    theme : 'info',
     position : {
         top : 0,
         left : 0
@@ -330,22 +331,85 @@ H.tooltips.create({
 
 ```
 /*
- * H.tooltips.show($target);
+ * H.Tooltips.show($target);
  * 参数说明：
  * $target 【JqueryObj】 tooltips 提示框的 JqueryObj
  * */
 
-H.tooltips.show($('#J-tooltips-dom'));
+H.Tooltips.show($('#J-tooltips-dom'));
 ```
 
 ```
 /*
- * H.tooltips.hide($target);
+ * H.Tooltips.hide($target);
  * 参数说明：
  * $target 【JqueryObj】 tooltips 提示框的 JqueryObj
  * */
 
-H.tooltips.hide($('#J-tooltips-dom'));
+H.Tooltips.hide($('#J-tooltips-dom'));
+```
+
+<br />
+
+#<a name="GetStrCodeLength"></a>H.getStrCodeLength
+H.getStrCodeLength 本身就是一个静态方法：<br />
+<br /><br />
+下面是调用实例，注释是参数说明：
+```
+/*
+ * H.getStrCodeLength(str)
+ * 参数说明：
+ * str 【String】 需要获取字符长度的字符串
+ * */
+
+H.getStrCodeLength('1000米到底有多长')
+```
+
+<br />
+
+#<a name="SubStrByCode"></a>H.subStrByCode
+H.subStrByCode 本身就是一个静态方法：<br />
+<br /><br />
+下面是调用实例，注释是参数说明：
+```
+/*
+ * H.subStrByCode(str, codeLength, flag, EnglishType)
+ * 参数说明：
+ * str 【String】 需要处理的字符串
+ * codeLength 【Int】 需求截字的长度
+ * flag 【Bool】 是否要保留头尾空格符，默认值为 false
+ * EnglishType 【Bool】 是否开启英文截字模式（英文截字模式下，截字末尾如果将单词截断了，就会把末尾被截断的单词部分也去除掉），默认值为 false
+ * PS：EnglishType 参数放在最后，因为在中文环境，如果将 EnglishType 设置为 true，会出现意想不到的结果。因此中文环境下使用此参数需慎重
+ * */
+
+H.subStrByCode('超长的东东1律kaca掉~~~超长的东东1律kaca掉~~~', 20)
+```
+
+<br />
+
+#<a name="DateFormat"></a>DateObj.dateFormat
+DateObj.dateFormat 是对 Date 对象的方法扩展：<br />
+<br /><br />
+下面是调用实例，注释是参数说明：
+```
+/*
+ * DateObj.dateFormat(fomateType)
+ * 参数说明：
+ * fomateType 【String】 和大多数的日期格式化方法一样，由不同字母构成不同的格式化规则：
+ * y - 年
+ * M - 月
+ * d - 日
+ * h - 时（12小时制）
+ * H - 时（24小时制）
+ * m - 分
+ * s - 秒
+ * S - 毫秒
+ * q - 季度
+ * E - 星期几
+ * */
+
+var now = new Date();
+now.dateFormat('yyyy-MM-dd');
 ```
 
 <br />

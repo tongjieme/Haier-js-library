@@ -50,6 +50,7 @@ H.Monitor 对象提供了3个方法：<br />
  * 字符串中的所有空格符都会被过滤掉，建议仅用英文和数字组织触发条件名
  * func 【function】 满足触发条件时，需要触发的函数
  * */
+ 
 H.Monitor.listen('getData', function () {
     alert('success');
 });
@@ -66,6 +67,7 @@ H.Monitor.listen('getData', function () {
  * 满足触发条件时，传给触发的函数的公共参数
  * 多个触发条件分开触发时，分别传入的 params 参数对象将会合并（extend）
  * */
+ 
 H.Monitor.trigger('getData', {
     name: 'Jack'
 });
@@ -79,6 +81,7 @@ H.Monitor.trigger('getData', {
  * 触发条件list的表达字符串，各个条件由英文逗号','分隔开
  * 字符串中的所有空格符都会被过滤掉，建议仅用英文和数字组织触发条件名
  * */
+ 
 H.Monitor.unListen('getData');
 ```
 
@@ -95,6 +98,7 @@ H.Storage 对象提供了3个方法：<br />
  * 参数说明：
  * key 【String】 目标键名
  * */
+ 
 H.Storage.get('myStorage');
 ```
 
@@ -105,6 +109,7 @@ H.Storage.get('myStorage');
  * key 【String】 目标键名（为了避免在IE6上产生报错，请不要以数字或特殊符号作为键名开头）
  * value 【String】 要设置的值
  * */
+ 
 H.Storage.set('myStorage', 1);
 ```
 
@@ -114,7 +119,43 @@ H.Storage.set('myStorage', 1);
  * 参数说明：
  * key 【String】 目标键名
  * */
+ 
 H.Storage.remove('myStorage');
+```
+
+<br />
+
+#<a name="ItvEvents"></a>H.ItvEvents
+H.ItvEvents 对象提供了2个方法：<br />
+**H.ItvEvents.addEvent、H.ItvEvents.removeEvent**<br />
+<br /><br />
+下面是2个方法的调用实例，注释是参数说明：
+```
+/*
+ * H.ItvEvents.addEvent($el, eventType, eventName, fn, itvTime);
+ * 参数说明：
+ * $el 【JqueryObj】 要绑定事件的JqueryDOM对象
+ * eventType 【String】 要绑定的事件类型
+ * eventName 【String】 事件的命名空间
+ * fn 【Function】 事件触发时要执行的函数
+ * itvTime 【Int】 事件被连续触发时，对应的函数的执行间隔
+ * */
+ 
+H.ItvEvents.addEvent($(window), 'resize', 'resetSomeThing', function () {
+    $('#someThing').width($(window).width());
+}, 300);
+```
+
+```
+/*
+ * H.ItvEvents.removeEvent($el, eventType, eventName);
+ * 参数说明：
+ * $el 【JqueryObj】 要绑定事件的JqueryDOM对象
+ * eventType 【String】 要绑定的事件类型
+ * eventName 【String】 事件的命名空间
+ * */
+ 
+H.ItvEvents.removeEvent($(window), 'resize', 'resetSomeThing');
 ```
 
 <br />

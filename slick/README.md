@@ -13,6 +13,20 @@
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="slick/slick.min.js"></script>
 
+<div class="slides">
+	<div class="slide">
+		<img src="https://unsplash.it/500/300?image=50" alt="">
+	</div>	
+	<div class="slide">
+		<img src="https://unsplash.it/500/300?image=51" alt="">
+	</div>	
+	<div class="slide">
+		<img src="https://unsplash.it/500/300?image=52" alt="">
+	</div>	
+	<div class="slide">
+		<img src="https://unsplash.it/500/300?image=53" alt="">
+	</div>	
+</div>
 <script>
 $('.slides').slick({
 	dots          : true, // 是否显示 slider 底部的"点点"

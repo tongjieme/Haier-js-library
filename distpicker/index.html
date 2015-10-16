@@ -23,6 +23,13 @@
 
 	<div style="height: 50px"></div>
 	<h2>Demo</h2>
+	<h3>初始化</h3>
+	<div id="J-distpicker2">
+	    <select></select>
+	    <select></select>
+	    <select></select>
+	</div>
+	<h3>初始化已选地区</h3>
 	<div id="J-distpicker">
 	    <select data-selected="140000"></select>
 	    <select data-selected="140100"></select>
@@ -37,7 +44,10 @@
 
 <script>
 	$(function() {
-		$("#J-distpicker").distpicker({});
+		$("#J-distpicker").distpicker({
+			abc: ''
+		});
+		$("#J-distpicker2").distpicker({});
 	});
 </script>
 </body>

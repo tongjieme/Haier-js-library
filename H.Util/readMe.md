@@ -159,3 +159,45 @@ H.ItvEvents.removeEvent($(window), 'resize', 'resetSomeThing');
 ```
 
 <br />
+
+#<a name="JsLoader"></a>H.JsLoader
+H.JsLoader 对象提供了1个方法：<br />
+**H.JsLoader.get**<br />
+<br /><br />
+下面是这个方法的调用实例，注释是参数说明：
+```
+/*
+ * H.JsLoader.get(module[, module...]);
+ * 参数说明：
+ * module 【Obj】【可以传多个,表示加载多个脚本】
+ * 每个 module 对象包含了4个属性：
+ * name 【String】 必传，要引入 JS 的模块名
+ * url 【String】 必传，要引入 JS 的路径
+ * requires 【String Array】 可选，此脚本依赖的模块（所依赖模块的模块名组成的集合）
+ * callBack 【Function】 回调函数，脚本加载完后执行的回调函数
+ * */
+
+//加载单个脚本 
+HaierJS.JsLoader.get({
+    name: 'avalon',
+    url: 'vendor/avalon/avalon.shim.js'
+});
+
+//加载多个脚本 
+HaierJS.JsLoader.get({
+    name: 'companyIndex',
+    url: 'js/company-index.js',
+    requires: ['avalon', 'jcrop', 'plupload']
+}, {
+    name: 'avalon',
+    url: 'vendor/avalon/avalon.shim.js'
+}, {
+    name: 'jcrop',
+    url: 'vendor/jcrop/jquery.Jcrop.min.js'
+}, {
+    name: 'plupload',
+    url: 'vendor/plupload/plupload.full.min.js'
+});
+```
+
+<br />

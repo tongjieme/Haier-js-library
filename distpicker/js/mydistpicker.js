@@ -20,9 +20,9 @@ $.fn.distpicker = function(options) {
         }, options || {});
 
         var selected = {};
-        $province = $(this).find('select').eq(0).html('<option value="">-请选择-</option>');
-        $city     = $(this).find('select').eq(1).html('<option value="">-请选择-</option>');
-        $district = $(this).find('select').eq(2).html('<option value="">-请选择-</option>');
+        var $province = $(this).find('select').eq(0).html('<option value="">-请选择-</option>'),
+            $city     = $(this).find('select').eq(1).html('<option value="">-请选择-</option>'),
+            $district = $(this).find('select').eq(2).html('<option value="">-请选择-</option>');
 
         $province.on('change', function() {
             iniCity($(this).val(), selected.city)

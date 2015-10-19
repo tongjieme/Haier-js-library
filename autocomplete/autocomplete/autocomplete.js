@@ -1,7 +1,8 @@
 // version 1.0		update: 7.29
 var HaierJS = window.HaierJS || {};
 
-	HaierJS.autoComplete = function(options){
+	$.fn.autoComplete = function(options){
+		var This = this;
 		var show = function(){
 			reset();
 			$html.show();
@@ -34,7 +35,7 @@ var HaierJS = window.HaierJS || {};
 
 		var o = $.extend({
 			items: [],
-			$input: $('input')
+			$input: $(This)
 		}, options)
 		var $html = $('<div class="autoComplteWrap"><ul></ul></div>');
 
@@ -104,7 +105,7 @@ var HaierJS = window.HaierJS || {};
 				clearTimeout($('body').data('autocompleteTimer'));
 				$('body').data('autocompleteTimer', setTimeout(function() {
 					o.items();      
-				}, 200))
+				}, o.delay || 200))
 				
 			} else {
 				update($.grep(o.items, function(s){

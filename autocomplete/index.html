@@ -37,14 +37,13 @@
 <script src="autocomplete/autocomplete.js"></script>
 <link href="autocomplete/autocomplete.css" rel="stylesheet">
 <script>
-	var c = HaierJS.autoComplete({
-			$input: $("#search"),
+	var c = $("#search").autoComplete({
 			items: ["浏览器", "下载工具", "远程控制邮件处理", "FTP工具 ", "IP工具  网络推广", "网页制作", "网络辅助"]
 		});
 
 	// items 为 function 的例子
-	var a = HaierJS.autoComplete({
-			$input: $("#ajaxSearch"),
+	var a = $("#ajaxSearch").autoComplete({
+			delay: 200,
 			items: function(){
 				var This = this;
 				$.ajax({

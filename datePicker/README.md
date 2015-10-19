@@ -1,7 +1,8 @@
 #日历选择
 
-基于 http://stefangabos.ro/jquery/zebra-datepicker/
-demo http://tongjieme.github.io/Haier-js-library/datepicker
+基于 http://stefangabos.ro/jquery/zebra-datepicker/ <br>
+
+demo http://tongjieme.github.io/Haier-js-library/datePicker
 
 ###用法
 ```html
@@ -11,10 +12,14 @@ demo http://tongjieme.github.io/Haier-js-library/datepicker
 ```
 
 ###默认模式
-`<input type="text" class="datePicker">`
+```
+<input type="text" class="datePicker">
+```
 
 ###future only 模式
-`<input type="text" class="datePickerFuture">`
+```
+<input type="text" class="datePickerFuture">
+```
 
 ###时间范围模式
 ```html

@@ -23,8 +23,13 @@ demo http://tongjieme.github.io/Haier-js-library/datePicker
 
 ###时间范围模式
 ```html
+<!-- 实例1 -->
 <input type="text" class="datePickerBegin1">
 <input type="text" class="datePickerEnd1">
+
+<!-- 实例2 -->
+<input type="text" class="datePickerBegin2">
+<input type="text" class="datePickerEnd2">
 ```
 
 ###更多自定义请使用官方初始化方式

@@ -6,6 +6,12 @@ demo: http://tongjieme.github.io/Haier-js-library/autocomplete/
 
 
 ##用法
+###引入
+```
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="autocomplete/autocomplete.js"></script>
+<link href="autocomplete/autocomplete.css" rel="stylesheet">
+```
 ###普通模式
 ```html
 <input type="search" id="search">

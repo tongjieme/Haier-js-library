@@ -1378,6 +1378,15 @@
          */
         plugin.show = function() {
 
+
+            // if a callback function exists for when showing the date picker
+            if (plugin.settings.onOpen && typeof plugin.settings.onOpen == 'function')
+
+            // execute the callback function and pass as argument the element the plugin is attached to
+                plugin.settings.onOpen.call($element, $element);
+
+                
+
             // always show the view defined in settings
             view = plugin.settings.view;
 
@@ -1476,11 +1485,6 @@
                 // if date picker is always visible, show it
             } else datepicker.show();
 
-            // if a callback function exists for when showing the date picker
-            if (plugin.settings.onOpen && typeof plugin.settings.onOpen == 'function')
-
-            // execute the callback function and pass as argument the element the plugin is attached to
-                plugin.settings.onOpen.call($element, $element);
 
         };
 

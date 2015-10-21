@@ -3059,22 +3059,29 @@ $(function() {
             }
             return '';
         })();
-        $('.datePickerBegin' + pair).Zebra_DatePicker({
-            pair: $('.datePickerEnd' + pair),
-            show_icon: false,
+        $('.datePickerBegin' + pair).data('beginpair', $('.datePickerEnd' + pair)).Zebra_DatePicker({
             default_position: 'left_align',
+            show_icon: false,
             onSelect: function() {
                 $(this).trigger('change').trigger('blur');
+            },
+            onOpen: function(){
+                var This = this;
             }
         });
 
-        $('.datePickerEnd' + pair).Zebra_DatePicker({
-            direction: 1,
-            show_icon: false,
+        $('.datePickerEnd' + pair).data('endpair', $('.datePickerBegin' + pair)).Zebra_DatePicker({
             default_position: 'left_align',
+            show_icon: false,
             show_select_today: false,
             onSelect: function() {
                 $(this).trigger('change').trigger('blur');
+            },
+            onOpen: function(){
+                var This = this;
+                $(this).data('Zebra_DatePicker').update({
+                    direction: [$(This).data('endpair').val().replace(/\//g, '-'), false]
+                });
             }
         });
     });

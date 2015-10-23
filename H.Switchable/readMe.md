@@ -89,8 +89,8 @@ var switchable = new H.Switchable({
 switchable.init();
 ```
 <br />
-需要注意的是，轮播列表必须设置 position 为 absolute，它的父节点则必须设置 position 为 relative
-缩略图列表需要跟随滚动的话，也要这样设置
+需要注意的是，轮播列表必须设置 position 为 absolute，它的父节点则必须设置 position 为 relative<br />
+缩略图列表需要跟随滚动的话，也要这样设置<br />
 具体的话可以参考 demo 中的例子，里面列出了4种使用场景
 
 <br />

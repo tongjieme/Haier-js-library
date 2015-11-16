@@ -115,3 +115,53 @@ dialog 初始化时可以传入一个对象，对象的属性就是配置项，�
 ###removeFlag 【Bool】
 【高级选项】关闭窗口时，是否销毁 dom，默认为 true。当设置为 false 时，quickClose 配置属性会强制设为 false （因为 quickClose 触发的关闭弹窗会把 dom 销毁）
 <br /><br />
+
+#基于 H.dialog 的其他方法
+以下的几个方法，是根据功能需求对 H.dialog 的再封装。
+下面一一列出这些方法的调用实例，以及参数说明：
+
+###H.alert（信息提示弹框）
+```
+//此方法只有一个参数，提示信息内容【String】
+H.alert('我是一个信息提示框...');
+```
+
+###H.confirm（确认信息弹框）
+```
+//确认信息弹框的 title 属性会被强制无效化
+var d = H.confirm({
+    content: '你确定要打我？',//确认信息内容
+    quickClose: true,//点击空白处快速关闭
+    width: 300,//弹框宽度
+    okValue: '确定',//确定按钮上的文案
+    backdropOpacity: 0.7,//遮罩层透明度(默认0.7)
+    ok: function () {
+        alert('点击[确定]按钮执行的回调');
+    },
+    cancelValue: '取消',//取消按钮上的文案
+    cancel: function () {
+        alert('点击[取消]按钮执行的回调');
+    }
+});
+
+d.show();
+```
+
+###H.frameBox（iframe弹框）
+```
+//iframe 弹框的尺寸会根据子页面的大小变化而变化，但最大也不大于配置中所设置的 width 和 height
+var d = H.frameBox({
+    title: 'iframe 弹框',//弹框标题
+    content: 'demo-iframeInnerPage.html',//iframe 弹窗内容,也就是 iframe 的 src
+    width: 800,//弹框最大宽度
+    height: '80%',//弹框最大高度
+    onshow: function(){
+        //alert('弹窗弹出后执行的回调');
+    },
+    onclose: function(){
+        //alert('弹窗关闭后执行的回调');
+    }
+});
+
+d.show();
+```

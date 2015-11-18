@@ -18,7 +18,7 @@ http://tongjieme.github.io/Haier-js-library/distpicker/
 </div>
 <h3>初始化已选地区</h3>
 <div id="J-distpicker">
-    <!-- 对应省市区的变好 -->
+    <!-- 对应省市区的编号 -->
     <select data-selected="140000"></select>
     <select data-selected="140100"></select>
     <select data-selected="140105"></select>

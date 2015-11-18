@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery.grid</title>
+    <link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.useso.com/js/jquery/1.11.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="dist/css/bsgrid.all.min.css"/>
+    <script type="text/javascript" src="dist/js/lang/grid.zh-CN.min.js"></script>
+    <script type="text/javascript" src="dist/js/bsgrid.all.min.js"></script>
+    <!-- 下面的是未合并的源码,引入顺序不能错 -->
+    <!--
+    <script type="text/javascript" src="src/js/lang/grid.zh-CN.js"></script>
+    <script type="text/javascript" src="src/js/common.js"></script>
+    <script type="text/javascript" src="src/js/util.js"></script>
+    <script type="text/javascript" src="src/js/grid.paging.js"></script>
+    <script type="text/javascript" src="src/js/grid.js"></script>
+    <script type="text/javascript" src="src/js/grid.extend.js"></script>
+    <script type="text/javascript" src="src/js/export.js"></script>
+    <script type="text/javascript" src="src/js/form.js"></script>
+    -->
+</head>
+<body>
+<div class="container">
+    <h2>jquery.grid</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+        <li>插件官网：<a href="http://bsgrid.coding.io/" target="_blank">http://bsgrid.coding.io/</a></li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+
+    <table id="searchTable">
+        <tr>
+            <th w_index="XH">XH</th>
+            <th w_index="ID">ID</th>
+            <th w_index="CHAR">CHAR</th>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var gridObj;
+    $(function () {
+        gridObj = $.fn.bsgrid.init('searchTable', {
+            url: 'data/json.jsp',
+            // autoLoad: false,
+            pageSizeSelect: true,
+            pageSize: 10,
+            requestParamsName: {
+                curPage: 'pageIndex'
+            }
+        });
+    });
+
+    function operate(record, rowIndex, colIndex, options) {
+        return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+/* tooltips */
+.ui-tooltips-top-arrow .ui-tooltips-arrow,
+.ui-tooltips-top-left-arrow .ui-tooltips-arrow,
+.ui-tooltips-top-right-arrow .ui-tooltips-arrow {
+  left: 0;
+  top: -11px;
+  width: 100%;
+  height: 10px;
+}
+.ui-tooltips-top-arrow .arrow,
+.ui-tooltips-top-left-arrow .arrow,
+.ui-tooltips-top-right-arrow .arrow {
+  margin-left: -7px;
+  bottom: -11px;
+}
+.ui-tooltips-top-arrow .arrow-out,
+.ui-tooltips-top-left-arrow .arrow-out,
+.ui-tooltips-top-right-arrow .arrow-out {
+  margin-left: -7px;
+  bottom: -10px;
+}
+.ui-tooltips-right-arrow .ui-tooltips-arrow,
+.ui-tooltips-right-top-arrow .ui-tooltips-arrow,
+.ui-tooltips-right-bottom-arrow .ui-tooltips-arrow {
+  top: 0;
+  right: -11px;
+  width: 10px;
+  height: 100%;
+}
+.ui-tooltips-right-arrow .arrow,
+.ui-tooltips-right-top-arrow .arrow,
+.ui-tooltips-right-bottom-arrow .arrow {
+  margin-top: -7px;
+  left: -9px;
+}
+.ui-tooltips-right-arrow .arrow-out,
+.ui-tooltips-right-top-arrow .arrow-out,
+.ui-tooltips-right-bottom-arrow .arrow-out {
+  margin-top: -7px;
+  left: -8px;
+}
+.ui-tooltips-bottom-arrow .ui-tooltips-arrow,
+.ui-tooltips-bottom-left-arrow .ui-tooltips-arrow,
+.ui-tooltips-bottom-right-arrow .ui-tooltips-arrow {
+  left: 0;
+  bottom: -11px;
+  width: 100%;
+  height: 10px;
+}
+.ui-tooltips-bottom-arrow .arrow,
+.ui-tooltips-bottom-left-arrow .arrow,
+.ui-tooltips-bottom-right-arrow .arrow {
+  margin-left: -7px;
+  top: -10px;
+}
+:root .ui-tooltips-bottom-arrow .arrow,
+:root .ui-tooltips-bottom-left-arrow .arrow,
+:root .ui-tooltips-bottom-right-arrow .arrow {
+  top: -9px \9;
+}
+.ui-tooltips-bottom-arrow .arrow-out,
+.ui-tooltips-bottom-left-arrow .arrow-out,
+.ui-tooltips-bottom-right-arrow .arrow-out {
+  margin-left: -7px;
+  top: -9px;
+}
+:root .ui-tooltips-bottom-arrow .arrow-out,
+:root .ui-tooltips-bottom-left-arrow .arrow-out,
+:root .ui-tooltips-bottom-right-arrow .arrow-out {
+  top: -8px \9;
+}
+.ui-tooltips-left-arrow .ui-tooltips-arrow,
+.ui-tooltips-left-top-arrow .ui-tooltips-arrow,
+.ui-tooltips-left-bottom-arrow .ui-tooltips-arrow {
+  top: 0;
+  left: -11px;
+  width: 10px;
+  height: 100%;
+}
+.ui-tooltips-left-arrow .arrow,
+.ui-tooltips-left-top-arrow .arrow,
+.ui-tooltips-left-bottom-arrow .arrow {
+  margin-top: -7px;
+  right: -12px;
+}
+.ui-tooltips-left-arrow .arrow-out,
+.ui-tooltips-left-top-arrow .arrow-out,
+.ui-tooltips-left-bottom-arrow .arrow-out {
+  margin-top: -7px;
+  right: -11px;
+}
+.ui-tooltips {
+  position: absolute;
+  max-width: 800px;
+  border: 1px solid #dbdada;
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  font: 12px/18px tahoma, arial, Hiragino Sans GB, WenQuanYi Micro Hei, '\5FAE\8F6F\96C5\9ED1', '\5B8B\4F53', sans-serif;
+  color: #4d4d4d;
+  z-index: 50;
+}
+.ui-tooltips .arrow {
+  position: absolute;
+  width: 14px;
+  text-align: left;
+  height: 14px;
+  *overflow: hidden;
+  font: normal 12px/14px \5B8B\4F53, Hiragino Sans GB;
+  _line-height: 16px;
+  color: #fff;
+}
+.ui-tooltips {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity ease-out 0.15s;
+  transition: opacity ease-out 0.15s;
+}
+.ui-tooltips-close {
+  position: absolute;
+  z-index: 10;
+  right: 6px;
+  top: 6px;
+  font-size: 10px;
+  width: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #999;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .ui-tooltips-close {
+    -webkit-transform: scale(0.83);
+    -ms-transform: scale(0.83);
+    transform: scale(0.83);
+    -webkit-transform-origin: right top;
+    -ms-transform-origin: right top;
+    transform-origin: right top;
+  }
+}
+.ui-tooltips-close:hover {
+  color: #666;
+}
+.ui-tooltips-content {
+  position: relative;
+  background-color: #fff;
+  padding: 6px 10px;
+}
+.ui-tooltips-msg {
+  padding-left: 16px;
+}
+.ui-tooltips-msg .vipFont {
+  display: inline-block;
+  width: 26px;
+  margin-left: -26px;
+  text-align: left;
+  vertical-align: top;
+}
+.ui-tooltips-handle .ui-tooltips-content {
+  padding: 20px 25px;
+}
+.ui-tooltips-command {
+  margin-top: 12px;
+  text-align: center;
+  _padding-left: 10px;
+}
+.ui-tooltips-command a,
+.ui-tooltips-command button {
+  margin: 0 5px;
+  _margin: 0 10px 0 0;
+}
+.ui-tooltips-arrow {
+  position: absolute;
+}
+.ui-tooltips-arrow .arrow-out {
+  color: #dbdada;
+}
+.ui-tooltips-top-arrow .arrow,
+.ui-tooltips-top-arrow .arrow-out {
+  left: 50%;
+}
+.ui-tooltips-top-left-arrow .arrow,
+.ui-tooltips-top-left-arrow .arrow-out {
+  left: 25%;
+}
+.ui-tooltips-top-right-arrow .arrow,
+.ui-tooltips-top-right-arrow .arrow-out {
+  left: 75%;
+}
+.ui-tooltips-right-arrow .arrow,
+.ui-tooltips-right-arrow .arrow-out {
+  top: 50%;
+}
+.ui-tooltips-right-top-arrow .arrow,
+.ui-tooltips-right-top-arrow .arrow-out {
+  top: 25%;
+}
+.ui-tooltips-right-bottom-arrow .arrow,
+.ui-tooltips-right-bottom-arrow .arrow-out {
+  top: 75%;
+}
+.ui-tooltips-bottom-arrow .arrow,
+.ui-tooltips-bottom-arrow .arrow-out {
+  left: 50%;
+}
+.ui-tooltips-bottom-left-arrow .arrow,
+.ui-tooltips-bottom-left-arrow .arrow-out {
+  left: 25%;
+}
+.ui-tooltips-bottom-right-arrow .arrow,
+.ui-tooltips-bottom-right-arrow .arrow-out {
+  left: 75%;
+}
+.ui-tooltips-left-arrow .arrow,
+.ui-tooltips-left-arrow .arrow-out {
+  top: 50%;
+}
+.ui-tooltips-left-top-arrow .arrow,
+.ui-tooltips-left-top-arrow .arrow-out {
+  top: 25%;
+}
+.ui-tooltips-left-bottom-arrow .arrow,
+.ui-tooltips-left-bottom-arrow .arrow-out {
+  top: 75%;
+}
+.ui-tooltips-warning {
+  border-color: #f0c198;
+}
+.ui-tooltips-warning .ui-tooltips-content {
+  background-color: #fffef6;
+}
+.ui-tooltips-warning .arrow {
+  text-shadow: none;
+  color: #fffef6;
+}
+.ui-tooltips-warning .arrow-out {
+  color: #f0c198;
+}
+.ui-tooltips-info {
+  border-color: #86cfe7;
+}
+.ui-tooltips-info .ui-tooltips-content {
+  background-color: #eaffff;
+}
+.ui-tooltips-info .arrow {
+  text-shadow: none;
+  color: #eaffff;
+}
+.ui-tooltips-info .arrow-out {
+  color: #86cfe7;
+}
+.ui-tooltips-success {
+  border-color: #a5c691;
+}
+.ui-tooltips-success .ui-tooltips-content {
+  background-color: #ecffe5;
+}
+.ui-tooltips-success .arrow {
+  text-shadow: none;
+  color: #ecffe5;
+}
+.ui-tooltips-success .arrow-out {
+  color: #a5c691;
+}
+.ui-tooltips-error {
+  border-color: #dea4a7;
+}
+.ui-tooltips-error .ui-tooltips-content {
+  background-color: #fff0f0;
+}
+.ui-tooltips-error .arrow {
+  text-shadow: none;
+  color: #fff0f0;
+}
+.ui-tooltips-error .arrow-out {
+  color: #dea4a7;
+}
+.z-ui-tooltips-in,
+.z-ui-tooltips-in .ui-tooltips {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+}
+.z-ui-tooltips-out {
+  opacity: 0;
+}
+.z-ui-tooltips-out .ui-tooltips {
+  visibility: hidden;
+  opacity: 0;
+}
+:root .z-ui-tooltips-out .ui-tooltips {
+  visibility: visible;
+}
+
+/* pager */
+.ui-pager {
+  display: inline-block;
+  font-size: 0;
+}
+.ui-pager a {
+  border: 1px solid #e2e2e2;
+  background-color: #ffffff;
+  color: #333333;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 28px;
+  margin: 0 3px;
+  padding: 0 10px;
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+}
+.ui-pager a:hover {
+  border-color: #3388ff;
+  background-color: #fffeff;
+  color: #3333ff;
+  text-decoration: none;
+}
+.ui-pager .ui-pager-can {
+  border-color: #e2e2e2;
+  background-color: #ffffff;
+  color: #333333;
+}
+.ui-pager .ui-pager-active,
+.ui-pager .ui-pager-active:hover {
+  border-color: #3366ff;
+  background-color: #3388ff;
+  color: #fffeff;
+  cursor: default;
+}
+.ui-pager .ui-pager-cant,
+.ui-pager .ui-pager-cant:hover {
+  border-color: #e2e2e2;
+  background-color: #ffffff;
+  color: #e2e2e2;
+  cursor: default;
+}
+.ui-pager .ui-pager-dot {
+  border: none;
+  padding: 1px 11px;
+}
+.ui-pager .ui-pager-txt {
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0 10px;
+  line-height: 28px;
+  font-size: 14px;
+}
+.ui-pager .ui-pager-txt em {
+  color: #3366ff;
+}

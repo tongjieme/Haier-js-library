@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery.validationEngine</title>
+    <link href="http://libs.useso.com/js/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.useso.com/js/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="js/jquery.validationEngine.light.js"></script>
+    <style>
+        .form-group {
+            width: 400px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .form-group input {
+            width: 186px;
+        }
+        .form-group .err-msg{
+            position: absolute;
+            top: -1px;
+            left: 210px;
+            font-size: 12px;
+            color: #f60000;
+            border: 1px solid #f60000;
+            border-radius: 5px;
+            background-color: #ffffff;
+            padding: 4px 10px;
+            line-height: 21px;
+            display: none;
+        }
+        .form-group .err-msg-a{
+            color: #f60000;
+            border: 1px solid #f60000;
+            border-radius: 3px;
+            background-color: #ffffff;
+        }
+        .form-group .err-msg-b{
+            color: #0000ee;
+            border: 1px solid #0000ee;
+            border-radius: 3px;
+            background-color: #e0f0ff;
+        }
+        .form-group .err-msg-c{
+            color: #ffffff;
+            border: 1px solid #666666;
+            border-radius: 3px;
+            background-color: #9f9f9f;
+        }
+        .form-group .ui-tooltips{
+            top: 1px;
+            left: 210px;
+        }
+
+        button{
+            background: #0054a7;
+            color: #fff;
+            padding: 6px 20px;
+            border: none;
+            width: auto;
+            overflow: visible;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        .btn-disabled{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>jquery.validationEngine【轻量版】</h2>
+    <ul>
+        <li>如有 功能增加建议 及 bug 反馈 请联系 插件维护者 <b>曹志锋</b></li>
+        <li>使用方法请看源代码及注释</li>
+    </ul>
+
+    <div style="height: 50px"></div>
+    <h2>Demo</h2>
+    <p style="padding: 10px 0; line-height: 25px;">
+        原版官方gitHub：<a href="https://github.com/posabsolute/jQuery-Validation-Engine" target="_blank">https://github.com/posabsolute/jQuery-Validation-Engine</a><br>
+        <br>
+        新的 ValidationEngine 与原版有所不同（校验规则的语法与原版完全一致，这点请放心）<br>
+        不再使用 class 来定义校验规则，改用 data-ve 使之与样式区别开来<br>
+        ValidationEngine 将不再生成任何错误提示气泡<br>
+        默认情况下，它只对带 #J-ve-err-msg-[fieldName] .J-ve-err-msg 两个选择器的元素做处理（渐显，为内部 span.J-ve-err-msg-txt 插入信息）<br>
+        至于样式的具体实现，完全由使用者自定义，确保了错误提示信息渲染的最大自由度<br>
+        <br><br>
+        下面是一些与 ValidationEngine 相关的选择器及其说明：<br>
+        * .J-ve-cont —— 可以用带这个 class 的其他元素来代替 form 元素，指定表单范围<br>
+        * data-ve —— 用于定义校验规则<br>
+        * data-ve-skip —— 假如在表单提交按钮上添加此属性，并将它的值设为true，点击按钮将跨过表单校验流程直接提交表单<br>
+        * data-ve-msg-[validateType] —— 自定义指定校验类型的错误提示信息（高优先级）<br>
+        * data-ve-msg —— 自定义校验类型的错误提示信息（任何校验类型通用，中等优先级）<br>
+        * data-pretty-select —— 指定用户生成的模拟下拉框的ID，这个属性要添加到相对应的原生下拉框之中<br>
+        * data-tips-for-field —— 默认的错误信息提示框 target selector,它的 value 可以指定它显示哪个控件的错误提示信息<br>
+        * .J-ve-err-msg-txt —— 默认的错误信息提示框的提示信息插入元素 target selector，可以是信息提示框本体或者其后代节点<br>
+    </p>
+
+    <br><br><br>
+    <p>常规错误提示，验证插件的默认信息展示处理</p>
+    <br>
+    <form id="J-validate-form-01" method="post">
+        <div class="form-group">
+            <input name="userName" type="text" data-ve="validate[required]" class="form-control" placeholder="用户名">
+
+            <div data-tips-for-field="userName" class="err-msg err-msg-a"><span class="J-ve-err-msg-txt"></span></div>
+        </div>
+        <div class="form-group">
+            <input id="pwd-a" name="password" type="password" data-ve="validate[required,minSize[3]]" class=" form-control" placeholder="密码">
+
+            <div data-tips-for-field="password" class="err-msg err-msg-a"><span class="J-ve-err-msg-txt"></span></div>
+        </div>
+        <div class="form-group">
+            <input name="password_ag" type="password" data-ve="validate[required,equals[pwd-a]]" class=" form-control" placeholder="再次输入密码">
+
+            <div data-tips-for-field="password_ag" class="err-msg err-msg-a"><span class="J-ve-err-msg-txt"></span></div>
+        </div>
+
+        <br>
+        <button id="J-button-submit-01" type="submit" data-ve-skip="false">submit</button>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    //注意：showErrorMsg，hideErrorMsg，hideAll（三个属性只要定义了其中任何一个，请确保其他两个都作相应自定义，否则会影响正常功能）
+    $('#J-validate-form-01').validationEngine({
+        //是否整个表单只显示一条错误提示信息
+        showOneMessage: false,
+        //每个控件最多显示的错误信息条数（默认为 1，可以设置具体数值或者 false，设置为 false 时为不限制。为了界面效果，建议不要修改此值）
+        maxErrorsPerField : 1,
+        //是否显示错误提示
+        showErrorFlag : true,
+        //自定义错误提示显示方法  参数：$field, promptText, $from, options  (默认为 false 不设置)
+        showErrorMsg :　false,
+        //自定义错误提示隐藏方法  参数：$field, $from, options  (默认为 false 不设置)
+        hideErrorMsg : false,
+        //自定义的所有错误提示隐藏方法  参数：$form, options  (默认为 false 不设置)
+        hideAll : false
+    });
+</script>
+</body>
+</html>

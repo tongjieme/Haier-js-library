@@ -1,0 +1,30 @@
+.autoComplteWrap {
+  position: absolute;
+  left: 155px;
+  top: 50px;
+  background: white;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E2E2E2;
+  min-width: 200px;
+  max-height: 500px;
+  overflow: auto;
+}
+.autoComplteWrap ul {
+  margin: 0;
+  padding: 10px 0;
+}
+.autoComplteWrap ul li {
+  list-style: none;
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 5px 10px;
+  background: white;
+  transition: all 0.1s ease;
+  cursor: default;
+}
+.autoComplteWrap ul li:hover,
+.autoComplteWrap ul li.active {
+  background: #ECECEC;
+  /*color: white;*/
+}

@@ -65,6 +65,21 @@ HaierJS.plupload = function(options){
 						Error: function(up, err){
 							console.log(err.code);
 							console.log(err.message);
+							if(err.code == -600) {
+								err.message = "上传文件不能大于" + up.getOption().filters.max_file_size;
+							}
+							if(err.code == -601) {
+								err.message = "该上传文件的格式是不允许的, 请重新选择文件上传 \n\n支持的文件格式有" + (function(){
+									var s = '';
+
+									var mime_types = up.getOption().filters.mime_types;
+
+									$.each(mime_types, function(k,v){
+										s += v.extensions + (k == 0 && mime_types.length > 1 ? ',' : '');
+									});
+									return s;
+								})();
+							}
 							!!!(initHolder && initHolder.Error) || initHolder.Error(up, err);
 						}
 					})

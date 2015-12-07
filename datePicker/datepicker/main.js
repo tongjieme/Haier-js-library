@@ -1,7 +1,10 @@
-$(function(){
-	 $.each($('.datePicker'), function(k, v) {
+
+// config
+$(function() {
+    $.each($('.datePicker'), function(k, v) {
         $(v).Zebra_DatePicker({
             show_icon: false,
+            default_position: 'left_align',
             onSelect: function() {
                 $(v).trigger('change').trigger('blur');
             }
@@ -9,9 +12,10 @@ $(function(){
     });
 
 
-    $.each($('.datePickerFuture'), function(k, v){
+    $.each($('.datePickerFuture'), function(k, v) {
         $(v).Zebra_DatePicker({
             show_icon: false,
+            default_position: 'left_align',
             direction: true,
             onSelect: function() {
                 $(v).trigger('change').trigger('blur');
@@ -27,20 +31,29 @@ $(function(){
             }
             return '';
         })();
-        $('.datePickerBegin' + pair).Zebra_DatePicker({
-            pair: $('.datePickerEnd' + pair),
+        $('.datePickerBegin' + pair).data('beginpair', $('.datePickerEnd' + pair)).Zebra_DatePicker({
+            default_position: 'left_align',
             show_icon: false,
             onSelect: function() {
                 $(this).trigger('change').trigger('blur');
+            },
+            onOpen: function(){
+                var This = this;
             }
         });
 
-        $('.datePickerEnd' + pair).Zebra_DatePicker({
-            direction: 1,
+        $('.datePickerEnd' + pair).data('endpair', $('.datePickerBegin' + pair)).Zebra_DatePicker({
+            default_position: 'left_align',
             show_icon: false,
-            show_select_today: false,
+            // show_select_today: false,
             onSelect: function() {
                 $(this).trigger('change').trigger('blur');
+            },
+            onOpen: function(){
+                var This = this;
+                $(this).data('Zebra_DatePicker').update({
+                    direction: [$(This).data('endpair').val().replace(/\//g, '-'), false]
+                });
             }
         });
     });

@@ -20,9 +20,9 @@ $.fn.distpicker = function(options) {
         }, options || {});
 
         var selected = {};
-        var $province = $(this).find('select').eq(0).html('<option value="">-请选择-</option>'),
-            $city     = $(this).find('select').eq(1).html('<option value="">-请选择-</option>'),
-            $district = $(this).find('select').eq(2).html('<option value="">-请选择-</option>');
+        var $province = $(this).find('select').eq(0).html('<option value="">-- 省份 --</option>'),
+            $city     = $(this).find('select').eq(1).html('<option value="">-- 市区 --</option>'),
+            $district = $(this).find('select').eq(2).html('<option value="">-- 县区 --</option>');
 
         $province.on('change', function() {
             iniCity($(this).val(), selected.city)
@@ -49,10 +49,11 @@ $.fn.distpicker = function(options) {
         }
 
         var iniCity = function(provinceZipcode, selected) {
-            if (provinceZipcode.length == 0) {
+            if (provinceZipcode === '') {
                 return;
             }
             if (/^\d*$/.test(provinceZipcode)) {
+                $city.html('<option value="">-- 市区 --</option>');
                 $.each(ChineseDistricts[provinceZipcode], function(k, v) {
                     $city.append('<option data-zipcode="' + k + '" value="' + k + '" ' + (function() {
                         if (selected == k) {
@@ -69,10 +70,11 @@ $.fn.distpicker = function(options) {
         }
 
         var initDistrict = function(cityZipcode, selected) {
-            if (cityZipcode.length == 0) {
+            if (cityZipcode === '') {
                 return;
             }
             if (/^\d*$/.test(cityZipcode)) {
+                $district.html('<option value="">-- 县区 --</option>');
                 $.each(ChineseDistricts[cityZipcode], function(k, v) {
                     $district.append('<option data-zipcode="' + k + '" value="' + k + '" ' + (function() {
                         if (selected == k) {

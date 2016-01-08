@@ -1,0 +1,42 @@
+@import 'base/reset';
+@import 'base/layout';
+@import 'apple/layout_style';
+@import 'apple/base';
+@import 'base/typography';
+@import 'elemis/form_elements';
+@import 'elemis/form_buttons';
+
+.clear {
+	clear: both;
+}
+/* Begin main
+================================================== */
+[class^=help] {
+	display: none;
+}
+
+.button {
+	padding: 7px 18px;
+	width: auto;
+}
+
+section {
+	margin-bottom: 20px;
+}
+
+.paper {
+	margin-top: 50px;
+}
+
+#downloadZIP_Corner {
+	display: block;
+	width: 128px;
+	height: 128px;
+	background: url(../img/zip.png);
+	position: absolute;
+	left: -22px;
+	top: -50px;
+	text-indent: -999px;
+}
+/* End main
+================================================== */

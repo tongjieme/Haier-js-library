@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h1 id="表单验证组件">表单验证组件</h1>
+
+<p>依赖 tooltipster</p>
+
+<h2 id="使用示例">使用示例</h2>
+
+<pre><code>&lt;form action=&quot;#&quot;&gt;
+    &lt;input type=&quot;text&quot; data-valid=&quot;required email&quot; placeholder=&quot;Email:&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+    formValid.submitValid($('form'));
+&lt;/script&gt;
+</code></pre>
+
+<pre><code>&lt;form action=&quot;#&quot;&gt;
+    &lt;input type=&quot;text&quot; data-valid=&quot;required email&quot; placeholder=&quot;Email:&quot;&gt;
+    &lt;input type=&quot;text&quot; data-valid=&quot;minLength_10&quot; placeholder=&quot;最少长度10&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+    formValid.blurValid($('form'));
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="api">API</h2>
+
+<pre><code>form.test($('&lt;input type=&quot;text&quot; data-valid=&quot;minLength_10&quot; placeholder=&quot;最少长度10&quot;&gt;'));
+// return Object {isPassed: false, type: &quot;required&quot;, msg: &quot;* This fields is required.&quot;}
+
+form.tests($('[data-valid]'));
+// return Object {isPassed: false, list: [{$el: $el, type: 'required'}]}
+
+formValid.test($input)
+// return Object {isPassed: false, type: &quot;required&quot;, msg: &quot;* This fields is required.&quot;}
+// 显示tooltips
+
+formValid.tooltips.error($input, 'message');
+// 只显示tooltips
+
+formValid.test($input)
+formValid.tests($inputs)
+
+formValid.blurValid($form)
+formValid.submitValid($form)
+// e.preventDefault()
+</code></pre>
+
+<h3 id="自定义验证规则">自定义验证规则</h3>
+
+<pre><code>&lt;input type=&quot;text&quot; data-valid=&quot;abc_1&quot;&gt;
+&lt;script&gt;
+form.isAbc = function($el){
+    console.log(arguments);
+    return {
+            isPassed: false,
+            type: 'abc',
+            msg: 'abc'
+        };
+}
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="可选验证类型">可选验证类型</h3>
+
+<ul>
+<li>required</li>
+<li>email</li>
+<li>chinese</li>
+<li>noChinese</li>
+<li>zipcode</li>
+<li>mobile</li>
+<li>phone</li>
+<li>phoneCn</li>
+<li>numbers</li>
+<li>numbers_dot</li>
+<li>abc</li>
+<li>numbers_abc_underline</li>
+<li>url</li>
+<li>username</li>
+<li>price</li>
+<li>chinaIdLoose</li>
+<li>chinaZip</li>
+<li>ipv4</li>
+<li>url</li>
+<li>minLength</li>
+<li>maxLength</li>
+</ul>
+
+</body>
+</html>

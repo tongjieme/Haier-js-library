@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta http-equiv="x-ua-compatible" content="IE=10">
+
+	<link href="css/style.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+<div class="paper">
+	<section class="boxed">
+		<div class="inner">
+		<!-- <section class="section-header center">
+			<h1 class="title">Form Validation <span class="title-highlight">Helper</span></h1>
+		</section> -->
+		<div class="two-third quickUsage">
+			<h2>Quick Usage</h2>
+			<section>
+				<input type="text" data-valid="required" placeholder="requried">
+			</section>
+			<section>
+				<input type="text" data-valid="required email" placeholder="requried Email">
+			</section>
+			<section>
+				<input type="text" data-valid="required noChinese" placeholder="requried noChinese">
+			</section>
+
+			<textarea codex="html">
+<div class="quickUsage">
+	<input type="text" data-valid="required" placeholder="requried">
+	<input type="text" data-valid="required email" placeholder="requried Email">
+	<input type="text" data-valid="required noChinese" placeholder="requried">	
+</div>
+<script>
+	formValid.blurValid($('.quickUsage'));
+</script>
+            </textarea>
+		</div>
+
+		</div> <!-- end inner -->
+	</section>
+
+	<section class="boxed">
+		<div class="inner">
+		<section class="section-header left">
+			<h3 class="title">实际表单 <span class="title-highlight">demo</span></h3>
+		</section>
+		<form action="#" id="submitValid">
+			<h5>示例1:</h5>
+            <section class="one-third">
+                <input type="text" data-valid="required email" placeholder="Email:"><br>    
+            </section>
+		    
+            <section class="one-third">
+                <input type="password" data-valid="required minLength_10 maxLength_15" placeholder="Password:">    
+            </section>
+            
+            <section class="one-third">
+                <input type="submit" class="pureBtn big red">    
+            </section>
+
+            
+        </form>
+        <div class="clear"></div>
+		<form action="#" class="column-wrap" id="realExample">
+			<h5>示例1:</h5>
+			<section class="one-third">
+				<input type="text"data-valid="required noChinese" placeholder="Username">
+			</section>
+			<section class="one-third">
+				<input type="text" data-valid="required url" placeholder="url">
+			</section>
+			<section class="one-third">
+				<input type="password" data-valid="required ajax" name="password" placeholder="Password">
+			</section>
+			<section class="one-third">
+				<input type="password" data-valid="required equal_password" name="password2" placeholder="Password">
+			</section>
+			<section class="one-third last">
+				<input type="text" data-valid="required email" placeholder="Email" name="email">
+			</section>
+			<section>
+				<textarea data-valid="required minLength_10"></textarea>
+			</section>
+			<section>
+				<input type="checkbox" data-valid="required" />
+			</section>
+			<section>
+				<input type="submit" class="pureBtn big red">
+				<input type="text" data-valid="required abc_10_20_10_10_10" placeholder="Email" name="email">
+			</section>
+		</form>
+		
+		</div>
+	</section>
+	
+</div> <!-- end paper -->
+<script src="js/jquery-1.11.1.min.js"></script>
+
+<script src="js/tooltipster/jquery.tooltipster.js"></script>
+<link href="js/tooltipster/tooltipster.css" rel="stylesheet">
+<script src="js/formValidHelper.js"></script>
+<link href="js/formValidHelper.css" rel="stylesheet">
+
+<script src="js/highlight/highlight.pack.js"></script>
+<link href="js/highlight/styles/monokai_sublime.css" rel="stylesheet">
+<script src="js/ng/angular-min.js"></script>
+<script src="js/ng/app.js"></script>
+
+<script>
+formValid.submitValid($('#submitValid'));
+
+
+
+
+// simple real world example
+$('#realExample').on('submit', function(e){
+	var result = formValid.tests($(this).find('[data-valid]'));
+	if(!result.isPassed) {
+		e.preventDefault();
+	}
+});
+formValid.showOneMessage = true;
+formValid.autoPositionUpdate = true;
+formValid.blurValid($('#realExample'));
+formValid.blurValid($('.quickUsage'));
+    
+form.isAbc = function($el){
+	console.log(arguments);
+	if($el.val() === 'abc') {
+		return {
+				isPassed: false,
+				type: 'abc',
+				msg: '不能是abc'
+			};
+	}
+	return {
+				isPassed: true,
+				type: 'abc',
+				msg: ''
+			};
+	console.log(arguments);
+	
+}
+// form.isAjax = function($el){
+// 	tooltips.error($el, 'validting');
+
+// 	var defered = $.Deferred();
+// 	setTimeout(function() {
+// 		defered.resolve({
+// 			isPassed: true,
+// 			type: 'ajax'
+// 		});
+// 	}, 3000);
+
+// 	return {
+// 				isPassed: false,
+// 				isDeferred: true,
+// 				deferred: defered.promise(),
+// 				func: function(abc){
+// 					tooltips.error($el, abc);
+// 				}
+// 			};
+// }
+// form.msg.abc = '* abc';
+
+</script>
+</body>
+</html>

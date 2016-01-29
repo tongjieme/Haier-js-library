@@ -44,6 +44,9 @@
 	// items 为 function 的例子
 	var a = $("#ajaxSearch").autoComplete({
 			delay: 200,
+			confirm: function(v){
+				console.log(v);
+			},
 			items: function(){
 				var This = this;
 				$.ajax({
@@ -53,7 +56,7 @@
 					timeout: 20e3,
 			        error: function(a,b){alert(b);},
 					success: function(data) {
-						This.update(data.items)
+						This.update(data.itemsObject);
 					}
 				});
 			}

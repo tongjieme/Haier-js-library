@@ -3,6 +3,10 @@ var HaierJS = window.HaierJS || {};
 
 	$.fn.autoComplete = function(options){
 		var This = this;
+		var confirm = options.confirm || $.noop;
+
+		var List = typeof options.items != 'function' ? options.items : [];
+
 		var show = function(){
 			reset();
 			$html.show();
@@ -13,16 +17,23 @@ var HaierJS = window.HaierJS || {};
 		};
 
 		var update = function(list, isFilter){
+			List = list;
 			if(!!!isFilter && typeof o.items != 'function') {
 				o.items = list;	
 			}
 			$html.find('ul').html((function(){
 				var s = '';
-				$.each(list, function(k,v){
-					s += '<li>'+v+'</li>'
+				$.each(List, function(k,v){
+					var text;
+					if (!$.isPlainObject(v)) {
+						text = v;
+					} else {
+						text = v.text;
+					}
+					s += '<li data-index="'+k+'"">'+text+'</li>';
 				});
 				return s;
-			})())
+			})());
 		};
 
 		var reset = function(){
@@ -31,12 +42,24 @@ var HaierJS = window.HaierJS || {};
 				top: o.$input.offset().top + o.$input.outerHeight(),
 				width: o.$input.outerWidth()
 			});
-		}
+		};
+
+		var select = function($li){
+			var text = $li.html(),
+				index = $li.data('index');
+
+			var item = o.items[index];
+
+			o.$input.val(text);
+			hide();
+			confirm(List[index]);
+		};
 
 		var o = $.extend({
 			items: [],
 			$input: $(This)
-		}, options)
+		}, options);
+
 		var $html = $('<div class="autoComplteWrap"><ul></ul></div>');
 
 		o.$input.attr('autocomplete', 'off');
@@ -54,8 +77,7 @@ var HaierJS = window.HaierJS || {};
 		$html.on('click', 'li', function(e){
 			e.preventDefault();
 			e.stopPropagation();
-			o.$input.val($(this).text())
-			hide();
+			select($(this));
 		})
 		o.$input.on('click', function(e){
 			e.preventDefault();
@@ -93,9 +115,9 @@ var HaierJS = window.HaierJS || {};
 				return;
 			}
 			if(e.keyCode == 13) {
+				// 回车
 				if(!!$html.find('li.active').length) {
-					o.$input.val($html.find('li.active').text())
-					hide();
+					select($($html.find('li.active')));
 				}
 				return;
 			}
@@ -104,8 +126,10 @@ var HaierJS = window.HaierJS || {};
 			if(typeof o.items == 'function') {
 				clearTimeout($('body').data('autocompleteTimer'));
 				$('body').data('autocompleteTimer', setTimeout(function() {
-					o.items();      
-				}, o.delay || 200))
+					o.items.call({
+						update: update
+					});
+				}, o.delay || 200));
 				
 			} else {
 				update($.grep(o.items, function(s){

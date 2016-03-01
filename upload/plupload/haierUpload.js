@@ -55,7 +55,7 @@ HaierJS.plupload = function(options){
 							    json = $.parseJSON(response.response)
 							}
 							catch(err) {
-							    
+							    throw err;
 							} 
 							finally {
 								!!!initHolder.FileUploaded || initHolder.FileUploaded(up, files, response, json);    

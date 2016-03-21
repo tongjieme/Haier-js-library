@@ -1,4 +1,4 @@
-// version 1.0		update: 7.29
+// version 1.1		update: 3.21
 var HaierJS = window.HaierJS || {};
 
 $.fn.autoComplete = function (options) {

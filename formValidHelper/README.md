@@ -2,7 +2,7 @@
 
 依赖 tooltipster
 
-##使用示例
+## 使用示例
 ```
 <form action="#">
 	<input type="text" data-valid="required email" placeholder="Email:">
@@ -22,7 +22,7 @@
 </script>
 ```
 
-##API
+## API
 ```
 form.test($('<input type="text" data-valid="minLength_10" placeholder="最少长度10">'));
 // return Object {isPassed: false, type: "required", msg: "* This fields is required."}
@@ -45,7 +45,7 @@ formValid.submitValid($form)
 // e.preventDefault()
 ```
 
-###自定义验证规则
+### 自定义验证规则
 ```
 <input type="text" data-valid="abc_1">
 <script>
@@ -60,7 +60,7 @@ form.isAbc = function($el){
 </script>
 ```
 
-###可选验证类型
+### 可选验证类型
 * required
 * email
 * chinese
